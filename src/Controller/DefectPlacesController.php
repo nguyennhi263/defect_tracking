@@ -48,6 +48,10 @@ class DefectPlacesController extends AppController
             }
             $this->Flash->error(__('The defect place could not be saved. Please, try again.'));
         }
+        $defectPlace->UnitTypeID="asd";
+       // $defectPlace->DefectPlaceName = "asdasd";
+        $defectPlace->coordX="235";
+        $defectPlace->coordY="34";
         $unitTypes = $this->DefectPlaces->UnitTypes->find('list', ['limit' => 200]);
         $this->set(compact('defectPlace', 'unitTypes'));
 
@@ -56,15 +60,16 @@ class DefectPlacesController extends AppController
     }
    public function add()
     {
-        $this->autoRender = false;
+       // $this->autoRender = false;
         $defectPlace = $this->DefectPlaces->newEntity($this->request->getData());
+        $message = 'null';
         if ($this->DefectPlaces->save($defectPlace)) {
             $message = 'Saved';
         } else {
             $message = 'Error';
         }
-        $this->set([
-            'message' => $message,
+        $this->set('_serialize', ['message']);
+        $this->set(['message' => $message,
             '_serialize' => ['message']
         ]);
     }
