@@ -23,7 +23,15 @@
         <div class="item">
             <div class="label">Image</div>
             <div class="content">
-                <img src="/defect_tracking/webroot/img/ArchirecturalDrawing/<?= $unitType->image ?>" alt="CakePHP" />
+            <div id="unit-map-container">
+                <div class="defect-place-saving">
+                    <input placeholder="Enter defect place" type="text" />
+                    <button class="btn-toggle">Save</button>
+                </div>
+                <div class="unit-map off" style="background-image:url(/defect_tracking/webroot/img/ArchirecturalDrawing/<?= $unitType->image ?>)">
+                    <img src="/defect_tracking/webroot/img/ArchirecturalDrawing/<?= $unitType->image ?>" alt="CakePHP" />
+                </div>
+            </div>
             </div>
         </div>
       

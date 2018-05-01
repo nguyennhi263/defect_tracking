@@ -1,0 +1,12 @@
+body {
+
+}
+
+/******************
+* Unit map
+*****************/
+#unit-map-container .unit-map {
+    width:800px; height:500px; border:2px solid #363636;
+    background-size:contain; background-position: center; background-repeat: no-repeat;
+}
+#unit-map-container .unit-map img {display: none;}
