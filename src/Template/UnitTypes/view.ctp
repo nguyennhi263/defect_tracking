@@ -15,18 +15,18 @@
 </nav>
 <div class="unitTypes view large-9 medium-8 columns content">
     <h3><?= h($unitType->name) ?></h3>
-    <table class="vertical-table">
-        <tr>
-            <th scope="row"><?= __('Name') ?></th>
-            <td><?= h($unitType->name) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Image') ?></th>
-            <td><?= h($unitType->image) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('UnitTypeID') ?></th>
-            <td><?= $this->Number->format($unitType->UnitTypeID) ?></td>
-        </tr>
-    </table>
+    <section>
+        <div class="item">
+            <div class="label"><?= __('Name') ?></div>
+            <div class="content"><?= h($unitType->name) ?></div>
+        </div>
+        <div class="item">
+            <div class="label">Image</div>
+            <div class="content">
+                <img src="/defect_tracking/webroot/img/ArchirecturalDrawing/<?= $unitType->image ?>" alt="CakePHP" />
+            </div>
+        </div>
+      
+    </section>
 </div>
+
