@@ -23,7 +23,8 @@ use Cake\Routing\Router;
     </fieldset>
     <?= $this->Form->button(__('Submit'),['id'=>'insert-project']) ?>
     <?= $this->Form->end() ?>
-    <script type="text/javascript">
+</div>
+ <script type="text/javascript">
     jQuery(document).ready(function ($) {
     $('#insert-project').click(function(){
         var projectName="test project name";
@@ -42,4 +43,3 @@ use Cake\Routing\Router;
     });
 });
 </script>
-</div>

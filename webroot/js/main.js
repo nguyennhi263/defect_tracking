@@ -9,17 +9,37 @@ jQuery(document).ready(function ($) {
         var btn_save = $("#unit-map-container .btn-unit-map");
         var place_name_form = $('.defect-place-saving');
         var place_name = $('input.place-name');
+        var url_post = $("#url-post").val()+".json";
+        var unit_type_id = $("#unit-type-id").val();
         var relativeX, relativeY;
 
         btn_save.click(function () {
             // Get data
             var place_name_val = place_name.val();
-            if(place_name_val.length < 10){
-                alert("Please enter place name, 10 characters minimum.");
+
+            if(place_name_val.length <4 ){
+                alert("Please enter place name, 4 characters minimum.");
             } else {
                 // Run ajax here
                 alert("Place: " + place_name_val + " - x:" + relativeX + ", y:" + relativeY);
-
+                // ajax insert defect place
+                    $.ajax({
+                        dataType: "html",
+                        method:"POST",
+                        type: "POST",
+                        evalScripts: true,
+                        url: url_post,
+                        data: ({
+                            UnitTypeID:unit_type_id,
+                            DefectPlaceName:place_name_val,
+                            coordX:relativeX,
+                            coordY:relativeY
+                        }),
+                        success: function (data, textStatus){
+                           // $("#div1").html(data);
+                           alert(data);
+                        }
+                    });
                 // Hide place name form
                 place_name_form.addClass('hidden');
 

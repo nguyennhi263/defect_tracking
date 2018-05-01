@@ -1,8 +1,7 @@
 <?php
 namespace App\Controller;
-
 use App\Controller\AppController;
-
+use Cake\Controller\Component\RequestHandlerComponent ;
 /**
  * DefectPlaces Controller
  *
@@ -13,11 +12,11 @@ use App\Controller\AppController;
 class DefectPlacesController extends AppController
 {
 
-    /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|void
-     */
+    public function initialize()
+    {
+        parent::initialize();
+        $this->loadComponent('RequestHandler');
+    }
     public function index()
     {
         $this->paginate = [
@@ -28,13 +27,6 @@ class DefectPlacesController extends AppController
         $this->set(compact('defectPlaces'));
     }
 
-    /**
-     * View method
-     *
-     * @param string|null $id Defect Place id.
-     * @return \Cake\Http\Response|void
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
     public function view($id = null)
     {
         $defectPlace = $this->DefectPlaces->get($id, [
@@ -44,12 +36,7 @@ class DefectPlacesController extends AppController
         $this->set('defectPlace', $defectPlace);
     }
 
-    /**
-     * Add method
-     *
-     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
-     */
-    public function add()
+    public function add1()
     {
         $defectPlace = $this->DefectPlaces->newEntity();
         if ($this->request->is('post')) {
@@ -63,15 +50,25 @@ class DefectPlacesController extends AppController
         }
         $unitTypes = $this->DefectPlaces->UnitTypes->find('list', ['limit' => 200]);
         $this->set(compact('defectPlace', 'unitTypes'));
+
+        // Specify which view vars JsonView should serialize.
+        $this->set('_serialize', ['defectPlace', 'unitTypes']);
+    }
+   public function add()
+    {
+        $this->autoRender = false;
+        $defectPlace = $this->DefectPlaces->newEntity($this->request->getData());
+        if ($this->DefectPlaces->save($defectPlace)) {
+            $message = 'Saved';
+        } else {
+            $message = 'Error';
+        }
+        $this->set([
+            'message' => $message,
+            '_serialize' => ['message']
+        ]);
     }
 
-    /**
-     * Edit method
-     *
-     * @param string|null $id Defect Place id.
-     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
-     */
     public function edit($id = null)
     {
         $defectPlace = $this->DefectPlaces->get($id, [
@@ -90,13 +87,7 @@ class DefectPlacesController extends AppController
         $this->set(compact('defectPlace', 'unitTypes'));
     }
 
-    /**
-     * Delete method
-     *
-     * @param string|null $id Defect Place id.
-     * @return \Cake\Http\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
+
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);

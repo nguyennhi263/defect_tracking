@@ -1,4 +1,5 @@
 <?php
+use Cake\Routing\Router;
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\UnitType $unitType
@@ -26,10 +27,12 @@
             <div id="unit-map-container">
                 <div class="form-inline defect-place-saving hidden">
                     <div class="form-group">
+                        <input type="text" id="unit-type-id" class="hidden" value="<?= h($unitType->UnitTypeID) ?>">
+                        <input type="text" id="url-post" class="hidden" value="<?php echo Router::url(['controller'=>'DefectPlaces','action'=>'add']);?>">
                         <label for="pwd">Place:</label>
                         <input type="text" class="form-control place-name" placeholder="Enter place name">
                     </div>
-                    <button class="btn btn-success btn-unit-map">Save</button>
+                    <button class="btn btn-success btn-unit-map" id="insert-defect-place">Save</button>
                 </div>
                 <div class="unit-map" style="background-image:url(/defect_tracking/webroot/img/ArchirecturalDrawing/<?= $unitType->image ?>)">
                     <img src="/defect_tracking/webroot/img/ArchirecturalDrawing/<?= $unitType->image ?>" alt="CakePHP" />
