@@ -27,10 +27,12 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->Html->meta('icon') ?>
 
     <?= $this->Html->css('base.css') ?>
+    <?= $this->Html->css('bootstrap.min.css') ?>
     <?= $this->Html->css('cake.css') ?>
     <?= $this->Html->css('main.css') ?>
 
     <?= $this->Html->script('jquery.min.js') ?>
+    <?= $this->Html->script('bootstrap.min.js') ?>
     <?= $this->Html->script('main.js') ?>
     <?= $this->Html->script('myajax.js') ?>
 
