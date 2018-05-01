@@ -1,4 +1,5 @@
 <?php
+use Cake\Routing\Router;
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Project $project
@@ -20,6 +21,25 @@
             echo $this->Form->control('ProjectName');
         ?>
     </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->button(__('Submit'),['id'=>'insert-project']) ?>
     <?= $this->Form->end() ?>
+    <script type="text/javascript">
+    jQuery(document).ready(function ($) {
+    $('#insert-project').click(function(){
+        var projectName="test project name";
+        $.ajax({
+            dataType: "html",
+            method:"POST",
+            type: "POST",
+            evalScripts: true,
+            url: '<?php echo Router::url(['controller'=>'Projects','action'=>'add']);?>',
+            data: ({ProjectName:projectName}),
+            success: function (data, textStatus){
+               // $("#div1").html(data);
+               alert(data);
+            }
+        });
+    });
+});
+</script>
 </div>
