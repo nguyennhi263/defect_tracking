@@ -31,7 +31,7 @@
                     </div>
                     <button class="btn btn-success btn-unit-map">Save</button>
                 </div>
-                <div class="unit-map off" style="background-image:url(/defect_tracking/webroot/img/ArchirecturalDrawing/<?= $unitType->image ?>)">
+                <div class="unit-map" style="background-image:url(/defect_tracking/webroot/img/ArchirecturalDrawing/<?= $unitType->image ?>)">
                     <img src="/defect_tracking/webroot/img/ArchirecturalDrawing/<?= $unitType->image ?>" alt="CakePHP" />
                 </div>
             </div>
