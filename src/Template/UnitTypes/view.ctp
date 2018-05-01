@@ -26,8 +26,12 @@
             <div id="unit-map-container">
                 <div class="defect-place-saving">
                     <input placeholder="Enter defect place" type="text" />
-                    <button class="btn-toggle">Save</button>
+                    <button class="btn-unit-map">Save</button>
                 </div>
+                <div class="form-group">
+                    <label for="pwd">Password:</label>
+                    <input type="password" class="form-control" id="pwd">
+                  </div>
                 <div class="unit-map off" style="background-image:url(/defect_tracking/webroot/img/ArchirecturalDrawing/<?= $unitType->image ?>)">
                     <img src="/defect_tracking/webroot/img/ArchirecturalDrawing/<?= $unitType->image ?>" alt="CakePHP" />
                 </div>

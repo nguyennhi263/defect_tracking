@@ -22,6 +22,10 @@ jQuery(document).ready(function ($) {
             coordinates.push( { 'x': relativeX, 'y': relativeY } );
 
         });
+
+        $('.cas').click(function () {
+            // ajax
+        });
     }
     get_coordinates();
 });
