@@ -26,8 +26,8 @@
             <div id="unit-map-container">
                 <div class="form-inline defect-place-saving hidden">
                     <div class="form-group">
-                        <label for="pwd">Password:</label>
-                        <input type="text" class="form-control place-name" placeholder="Enter defect place">
+                        <label for="pwd">Place:</label>
+                        <input type="text" class="form-control place-name" placeholder="Enter place name">
                     </div>
                     <button class="btn btn-success btn-unit-map">Save</button>
                 </div>
