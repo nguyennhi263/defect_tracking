@@ -28,7 +28,7 @@ use Cake\Routing\Router;
                 <div class="form-inline defect-place-saving hidden">
                     <div class="form-group">
                         <input type="text" id="unit-type-id" class="hidden" value="<?= h($unitType->UnitTypeID) ?>">
-                        <input type="text" id="url-post" class="hidden" value="<?php echo Router::url(['controller'=>'DefectPlaces','action'=>'add']);?>">
+                        <input type="text" id="url-post" class="hidden" value="<?php echo Router::url(['controller'=>'DefectPlaces','action'=>'add','_method' => 'POST',]);?>">
                         <label for="pwd">Place:</label>
                         <input type="text" class="form-control place-name" placeholder="Enter place name">
                     </div>

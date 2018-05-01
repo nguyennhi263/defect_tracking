@@ -15,7 +15,6 @@ class DefectPlacesController extends AppController
     public function initialize()
     {
         parent::initialize();
-        $this->loadComponent('RequestHandler');
     }
     public function index()
     {
@@ -36,25 +35,28 @@ class DefectPlacesController extends AppController
         $this->set('defectPlace', $defectPlace);
     }
 
-    public function add1()
+    public function add()
     {
         $defectPlace = $this->DefectPlaces->newEntity();
+        $message = 'sais';
         if ($this->request->is('post')) {
+
             $defectPlace = $this->DefectPlaces->patchEntity($defectPlace, $this->request->getData());
             if ($this->DefectPlaces->save($defectPlace)) {
                 $this->Flash->success(__('The defect place has been saved.'));
-
+                $message = 'Saved';
                 return $this->redirect(['action' => 'index']);
+                echo $defectPlace->DefectPlaceName;
             }
+            $message = 'Error';
             $this->Flash->error(__('The defect place could not be saved. Please, try again.'));
+            $this->set('_serialize', ['message']);
         }
         $unitTypes = $this->DefectPlaces->UnitTypes->find('list', ['limit' => 200]);
         $this->set(compact('defectPlace', 'unitTypes'));
-
-        // Specify which view vars JsonView should serialize.
-        $this->set('_serialize', ['defectPlace', 'unitTypes']);
+        
     }
-   public function add()
+   public function add1()
     {
         $this->autoRender = false;
         $defectPlace = $this->DefectPlaces->newEntity($this->request->getData());
