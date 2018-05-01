@@ -75,7 +75,7 @@ class UnitTypesController extends AppController
             // đặt tên mới cho file hình up lên
             $image_name = $time.'.'.$ext;
             // gán thêm cho file này đường dẫn
-            $newname=$_SERVER["DOCUMENT_ROOT"]. '/defect_tracking/webroot/ArchirecturalDrawing/' .$image_name;
+            $newname=$_SERVER["DOCUMENT_ROOT"]. '/defect_tracking/webroot/img/ArchirecturalDrawing/' .$image_name;
             //nếu ko có lỗi xảy ra->> tiếp tục upload
                 if (move_uploaded_file($file_tmp,$newname)){
                       $this->Flash->success(__('Saved image'));
