@@ -26,7 +26,7 @@ jQuery(document).ready(function ($) {
                     $.ajax({
                         dataType: "html",
                         method:"POST",
-                        dataType:"json",
+                        //dataType:"json",
                         evalScripts: true,
                         url: url_post,
                         data: ({
