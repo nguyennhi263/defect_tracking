@@ -17,6 +17,7 @@ namespace App\Controller;
 use Cake\Controller\Controller;
 use Cake\Event\Event;
 use Cake\Controller\Component\RequestHandlerComponent;
+use Cake\ORM\TableRegistry;
 /**
  * Application Controller
  *

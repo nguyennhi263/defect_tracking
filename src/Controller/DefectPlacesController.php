@@ -2,6 +2,7 @@
 namespace App\Controller;
 use App\Controller\AppController;
 use Cake\Controller\Component\RequestHandlerComponent ;
+use Cake\ORM\TableRegistry;
 /**
  * DefectPlaces Controller
  *
@@ -26,7 +27,16 @@ class DefectPlacesController extends AppController
 
         $this->set(compact('defectPlaces'));
     }
-
+    public function viewByUnitType($id = null){
+        $listDefectPlace = $this->DefectPlaces
+        ->find()
+        ->where(['unitTypeID' => 1])
+        ->toList();
+        $this->set(['listDefectPlace' => $listDefectPlace,
+                    '_serialize' => ['listDefectPlace']
+                ]);
+        
+    }
     public function view($id = null)
     {
         $defectPlace = $this->DefectPlaces->get($id, [
@@ -54,24 +64,6 @@ class DefectPlacesController extends AppController
                 ]);
             }
         }
-
-       // $unitTypes = $this->DefectPlaces->UnitTypes->find('list', ['limit' => 200]);
-       // $this->set(compact('defectPlace', 'unitTypes'));
-    }
-   public function add1()
-    {
-       // $this->autoRender = false;
-        $defectPlace = $this->DefectPlaces->newEntity($this->request->getData());
-        $message = 'null';
-        if ($this->DefectPlaces->save($defectPlace)) {
-            $message = 'Saved';
-        } else {
-            $message = 'Error';
-        }
-        $this->set('_serialize', ['message']);
-        $this->set(['message' => $message,
-            '_serialize' => ['message']
-        ]);
     }
 
     public function edit($id = null)
