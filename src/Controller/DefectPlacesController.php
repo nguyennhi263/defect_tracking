@@ -39,31 +39,24 @@ class DefectPlacesController extends AppController
     public function add()
     {
         $defectPlace = $this->DefectPlaces->newEntity();
-        if ($this->request->is('ajax')||$this->request->is('post')) {
+        if ($this->request->is('ajax')) {
             $defectPlace = $this->DefectPlaces->patchEntity($defectPlace, $this->request->getData());
             if ($this->DefectPlaces->save($defectPlace)) {
                 $message = 'Saved';
-               // $this->set(compact('message'));
                 $this->set(['message' => $message,
                     '_serialize' => ['message']
                 ]);
             }
             else{
-                $this->Flash->error(__('The defect place could not be saved. Please, try again.'));
+                $message = 'Error';
+                $this->set(['message' => $message,
+                    '_serialize' => ['message']
+                ]);
             }
         }
-        /*if ($this->request->is('post')) {
-            $defectPlace = $this->DefectPlaces->patchEntity($defectPlace, $this->request->getData());
-            if ($this->DefectPlaces->save($defectPlace)) {
-                $this->Flash->success(__('The defect place has been saved.'));
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The defect place could not be saved. Please, try again.'));
-        }*/
-        
-        
-        $unitTypes = $this->DefectPlaces->UnitTypes->find('list', ['limit' => 200]);
-        $this->set(compact('defectPlace', 'unitTypes'));
+
+       // $unitTypes = $this->DefectPlaces->UnitTypes->find('list', ['limit' => 200]);
+       // $this->set(compact('defectPlace', 'unitTypes'));
     }
    public function add1()
     {
