@@ -1,11 +1,11 @@
 jQuery(document).ready(function ($) {
-	function getListDefectPlace(){
+	function getListDefectPlace($id){
 		$.ajax({
                         dataType: "html",
                         method:"GET",
                         //dataType:"json",
                         evalScripts: true,
-                        url: "/defect-places/viewByUnitType/",
+                        url: "/defect-places/viewByUnitType/"+id+".json",
                         data: ({
                         }),
                         success: function (data, textStatus){
@@ -13,15 +13,5 @@ jQuery(document).ready(function ($) {
                            alert(data);
                         }
                     });
-	}
-	function show_image(src, width, height, alt) {
-	    var img = document.createElement("img");
-	    img.src = src;
-	    img.width = width;
-	    img.height = height;
-	    img.alt = alt;
-	    // This next line will just add it to the <body> tag
-	    document.body.getElementById("unit-type-map").appendChild(img);
-	    alert('a');
 	}
 });
