@@ -9,7 +9,7 @@ jQuery(document).ready(function ($) {
                         data: ({
                         }),
                         success: function (data, textStatus){
-                           alert(data);
+                          return data;
                         }
                     });
 	}
