@@ -30,12 +30,11 @@ class DefectPlacesController extends AppController
     public function viewByUnitType($id = null){
         $listDefectPlace = $this->DefectPlaces
         ->find()
-        ->where(['unitTypeID' => 1])
+        ->where(['unitTypeID' => $id])
         ->toList();
         $this->set(['listDefectPlace' => $listDefectPlace,
                     '_serialize' => ['listDefectPlace']
                 ]);
-        
     }
     public function view($id = null)
     {
