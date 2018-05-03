@@ -39,7 +39,7 @@ jQuery(document).ready(function ($) {
                            // $("#div1").html(data);
                            // alert(data);
                             // If save successfully, load saved unit places
-                            render_unit_places(relativeX, relativeY, place_name_val);
+                            render_unit_places(map, relativeX, relativeY, place_name_val);
                         }
                     });
                 // Hide place name form
@@ -60,15 +60,17 @@ jQuery(document).ready(function ($) {
             relativeY = parseInt(e.pageY - offset.top);
         });
 
-        // set unit places to map
-        function render_unit_places(pointX, pointY, place_name, place_id){
-            console.log("testing");
-            html = '<div class="unit-place" style="top:'+pointY+'px; left:'+pointX+'px;">';
-            html += '<div class="place-info"><span class="place-name">'+place_name+'</span>';
-            html += '<span class="place-delete" data-delete-id="'+place_id+'" title="Delete this place"><i class="fa fa-trash" aria-hidden="true"></i></span>';
-            html += '</div></div>';
-            map.append(html);
-        }
+
     }
     get_coordinates();
+
+    // set unit places to map
+    function render_unit_places($map, pointX, pointY, place_name, place_id){
+        console.log("testing");
+        html = '<div class="unit-place" style="top:'+pointY+'px; left:'+pointX+'px;">';
+        html += '<div class="place-info"><span class="place-name">'+place_name+'</span>';
+        html += '<span class="place-delete" data-delete-id="'+place_id+'" title="Delete this place"><i class="fa fa-trash" aria-hidden="true"></i></span>';
+        html += '</div></div>';
+        $map.append(html);
+    }
 });
