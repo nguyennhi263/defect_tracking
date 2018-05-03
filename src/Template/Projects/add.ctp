@@ -24,22 +24,3 @@ use Cake\Routing\Router;
     <?= $this->Form->button(__('Submit'),['id'=>'insert-project']) ?>
     <?= $this->Form->end() ?>
 </div>
- <script type="text/javascript">
-    jQuery(document).ready(function ($) {
-    $('#insert-project').click(function(){
-        var projectName="test project name";
-        $.ajax({
-            dataType: "html",
-            method:"POST",
-            type: "POST",
-            evalScripts: true,
-            url: '<?php echo Router::url(['controller'=>'Projects','action'=>'add']);?>',
-            data: ({ProjectName:projectName}),
-            success: function (data, textStatus){
-               // $("#div1").html(data);
-               alert(data);
-            }
-        });
-    });
-});
-</script>

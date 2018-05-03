@@ -13,19 +13,11 @@
  * @license   https://opensource.org/licenses/mit-license.php MIT License
  */
 namespace App\Controller;
-
-use Cake\Controller\Controller;
 use Cake\Event\Event;
+use Cake\Controller\Controller;
 use Cake\Controller\Component\RequestHandlerComponent;
 use Cake\ORM\TableRegistry;
-/**
- * Application Controller
- *
- * Add your application-wide methods in the class below, your controllers
- * will inherit them.
- *
- * @link https://book.cakephp.org/3.0/en/controllers.html#the-app-controller
- */
+
 class AppController extends Controller
 {
 
@@ -38,11 +30,43 @@ class AppController extends Controller
      *
      * @return void
      */
+    public $BlocksTable;
+    public $ContractorsTable;
+    public $DefectHeadersTable;
+    public $DefectItemsTable;
+    public $DefectPlacesTable;
+    public $PhasesTable;
+    public $ProjectsTable;
+    public $TradeDescriptionsTable;
+    public $TradesTable;
+    public $TradeTypesTable;
+    public $UnitsTable;
+    public $UnitTypesTable;
+    public $UserPositionsTable;
+    public $UsersTable;
+
     public function initialize()
     {
         parent::initialize();
 
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
+    }
+    public function beforeFilter(\Cake\Event\Event $event)
+    {
+        $this->BlocksTable = TableRegistry::get('Blocks');
+        $this->ContractorsTable = TableRegistry::get('Contractors');
+        $this->DefectHeadersTable = TableRegistry::get('DefectHeaders');
+        $this->DefectItemsTable = TableRegistry::get('DefectItems');
+        $this->DefectPlacesTable = TableRegistry::get('DefectPlaces');
+        $this->PhasesTable = TableRegistry::get('Phases');
+        $this->ProjectsTable = TableRegistry::get('Projects');
+        $this->TradeDescriptionsTable = TableRegistry::get('TradeDescriptions');
+        $this->TradesTable = TableRegistry::get('Trades');
+        $this->TradeTypesTable = TableRegistry::get('TradeTypes');
+        $this->UnitsTable = TableRegistry::get('Units');
+        $this->UnitTypesTable = TableRegistry::get('UnitTypes');
+        $this->UserPositionsTable = TableRegistry::get('UserPositions');
+        $this->UsersTable = TableRegistry::get('Users');
     }
 }
