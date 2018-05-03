@@ -56,7 +56,6 @@ class BlocksController extends AppController
             $block = $this->Blocks->patchEntity($block, $this->request->getData());
             if ($this->Blocks->save($block)) {
                 $this->Flash->success(__('The block has been saved.'));
-
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The block could not be saved. Please, try again.'));
