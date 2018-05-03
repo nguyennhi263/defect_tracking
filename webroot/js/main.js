@@ -36,9 +36,7 @@ jQuery(document).ready(function ($) {
                             coordY:relativeY
                         }),
                         success: function (data, textStatus){
-                           // $("#div1").html(data);
-                           // alert(data);
-                            // If save successfully, load saved unit places
+                            console.log(getListDefectPlace(unit_type_id));
                             render_unit_places(map, relativeX, relativeY, place_name_val);
                         }
                     });
