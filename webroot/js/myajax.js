@@ -9,7 +9,6 @@ jQuery(document).ready(function ($) {
                         data: ({
                         }),
                         success: function (data, textStatus){
-                           // $("#div1").html(data);
                            alert(data);
                         }
                     });
