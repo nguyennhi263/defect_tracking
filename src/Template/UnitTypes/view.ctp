@@ -34,7 +34,7 @@ use Cake\Routing\Router;
                     </div>
                     <button class="btn btn-success btn-unit-map" id="insert-defect-place">Save</button>
                 </div>
-                <div class="unit-map" style="background-image:url(/defect_tracking/webroot/img/ArchirecturalDrawing/<?= $unitType->image ?>)">
+                <div id="unit-type-map" class="unit-map" style="background-image:url(/defect_tracking/webroot/img/ArchirecturalDrawing/<?= $unitType->image ?>)">
                     <img src="/defect_tracking/webroot/img/ArchirecturalDrawing/<?= $unitType->image ?>" alt="CakePHP" />
                 </div>
             </div>
