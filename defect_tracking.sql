@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 01, 2018 at 05:05 AM
+-- Generation Time: May 03, 2018 at 12:42 PM
 -- Server version: 5.7.19
--- PHP Version: 7.1.9
+-- PHP Version: 7.0.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -141,20 +141,20 @@ CREATE TABLE IF NOT EXISTS `phinxlog` (
 --
 
 INSERT INTO `phinxlog` (`version`, `migration_name`, `start_time`, `end_time`, `breakpoint`) VALUES
-(20180417043921, 'CreateProjects', '2018-04-30 20:20:16', '2018-04-30 20:20:17', 0),
-(20180417045229, 'CreatePhases', '2018-04-30 20:20:17', '2018-04-30 20:20:17', 0),
-(20180417045351, 'CreateBlocks', '2018-04-30 20:20:17', '2018-04-30 20:20:17', 0),
-(20180417045421, 'CreateUnits', '2018-04-30 20:20:17', '2018-04-30 20:20:17', 0),
-(20180419030615, 'CreateUserPositions', '2018-04-30 20:20:17', '2018-04-30 20:20:18', 0),
-(20180419035947, 'CreateUsers', '2018-04-30 20:20:18', '2018-04-30 20:20:18', 0),
-(20180419045542, 'CreateTradeTypes', '2018-04-30 20:20:18', '2018-04-30 20:20:18', 0),
-(20180420035900, 'CreateTrades', '2018-04-30 20:20:18', '2018-04-30 20:20:18', 0),
-(20180420050134, 'CreateTradeDescriptions', '2018-04-30 20:20:18', '2018-04-30 20:20:19', 0),
-(20180420062310, 'CreateDefectPlaces', '2018-04-30 20:20:19', '2018-04-30 20:20:19', 0),
-(20180420062856, 'CreateDefectHeaders', '2018-04-30 20:20:19', '2018-04-30 20:20:19', 0),
-(20180420071406, 'CreateDefectItems', '2018-04-30 20:20:19', '2018-04-30 20:20:19', 0),
-(20180420071836, 'CreateContractors', '2018-04-30 20:20:19', '2018-04-30 20:20:20', 0),
-(20180430072435, 'CreateUnitTypes', '2018-04-30 20:20:20', '2018-04-30 20:20:20', 0);
+(20180417043921, 'CreateProjects', '2018-05-03 00:07:24', '2018-05-03 00:07:24', 0),
+(20180417045229, 'CreatePhases', '2018-05-03 00:07:24', '2018-05-03 00:07:25', 0),
+(20180417045351, 'CreateBlocks', '2018-05-03 00:07:25', '2018-05-03 00:07:25', 0),
+(20180417045421, 'CreateUnits', '2018-05-03 00:07:25', '2018-05-03 00:07:25', 0),
+(20180419030615, 'CreateUserPositions', '2018-05-03 00:07:25', '2018-05-03 00:07:25', 0),
+(20180419035947, 'CreateUsers', '2018-05-03 00:07:26', '2018-05-03 00:07:26', 0),
+(20180419045542, 'CreateTradeTypes', '2018-05-03 00:07:26', '2018-05-03 00:07:26', 0),
+(20180420035900, 'CreateTrades', '2018-05-03 00:07:26', '2018-05-03 00:07:26', 0),
+(20180420050134, 'CreateTradeDescriptions', '2018-05-03 00:07:26', '2018-05-03 00:07:27', 0),
+(20180420062310, 'CreateDefectPlaces', '2018-05-03 00:07:27', '2018-05-03 00:07:27', 0),
+(20180420062856, 'CreateDefectHeaders', '2018-05-03 00:07:27', '2018-05-03 00:07:27', 0),
+(20180420071406, 'CreateDefectItems', '2018-05-03 00:07:27', '2018-05-03 00:07:28', 0),
+(20180420071836, 'CreateContractors', '2018-05-03 00:07:28', '2018-05-03 00:07:28', 0),
+(20180430072435, 'CreateUnitTypes', '2018-05-03 00:07:28', '2018-05-03 00:07:28', 0);
 
 -- --------------------------------------------------------
 
@@ -167,7 +167,14 @@ CREATE TABLE IF NOT EXISTS `projects` (
   `ProjectID` int(10) NOT NULL AUTO_INCREMENT,
   `ProjectName` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`ProjectID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `projects`
+--
+
+INSERT INTO `projects` (`ProjectID`, `ProjectName`) VALUES
+(2, 'Fuji Residence');
 
 -- --------------------------------------------------------
 
@@ -225,9 +232,10 @@ CREATE TABLE IF NOT EXISTS `trade_types` (
 DROP TABLE IF EXISTS `units`;
 CREATE TABLE IF NOT EXISTS `units` (
   `UnitID` int(10) NOT NULL AUTO_INCREMENT,
-  `BlockID` tinyint(4) NOT NULL,
+  `BlockID` int(11) NOT NULL,
+  `UnitTypeID` int(11) NOT NULL,
   `UnitName` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `UnitFloor` tinyint(4) NOT NULL,
+  `UnitFloor` int(11) NOT NULL,
   PRIMARY KEY (`UnitID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
