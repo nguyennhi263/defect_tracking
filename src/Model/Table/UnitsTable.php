@@ -37,6 +37,11 @@ class UnitsTable extends Table
             'foreignKey' => 'BlockID',
             'joinType' => 'INNER'
         ]);
+        $this->belongsTo('UnitTypes', [
+            'foreignKey' => 'UnitTypeID',
+            'joinType' => 'INNER'
+        ]);
+        
     }
 
     /**
@@ -52,8 +57,14 @@ class UnitsTable extends Table
             ->allowEmpty('UnitID', 'create');
 
         $validator
+            ->integer('BlockID')
             ->requirePresence('BlockID', 'create')
             ->notEmpty('BlockID');
+
+        $validator
+            ->integer('UnitTypeID')
+            ->requirePresence('UnitTypeID', 'create')
+            ->notEmpty('UnitTypeID');
 
         $validator
             ->scalar('UnitName')
@@ -62,6 +73,7 @@ class UnitsTable extends Table
             ->notEmpty('UnitName');
 
         $validator
+            ->integer('UnitFloor')
             ->requirePresence('UnitFloor', 'create')
             ->notEmpty('UnitFloor');
 

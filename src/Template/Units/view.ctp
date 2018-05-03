@@ -13,6 +13,8 @@
         <li><?= $this->Html->link(__('New Unit'), ['action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Blocks'), ['controller' => 'Blocks', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Block'), ['controller' => 'Blocks', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Unit Types'), ['controller' => 'UnitTypes', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Unit Type'), ['controller' => 'UnitTypes', 'action' => 'add']) ?> </li>
     </ul>
 </nav>
 <div class="units view large-9 medium-8 columns content">
@@ -21,6 +23,10 @@
         <tr>
             <th scope="row"><?= __('Block') ?></th>
             <td><?= $unit->has('block') ? $this->Html->link($unit->block->BlockID, ['controller' => 'Blocks', 'action' => 'view', $unit->block->BlockID]) : '' ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Unit Type') ?></th>
+            <td><?= $unit->has('unit_type') ? $this->Html->link($unit->unit_type->name, ['controller' => 'UnitTypes', 'action' => 'view', $unit->unit_type->UnitTypeID]) : '' ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('UnitName') ?></th>

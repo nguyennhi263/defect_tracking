@@ -8,8 +8,11 @@ use Cake\ORM\Entity;
  *
  * @property int $UnitID
  * @property int $BlockID
+ * @property int $UnitTypeID
  * @property string $UnitName
  * @property int $UnitFloor
+ *
+ * @property \App\Model\Entity\Block $block
  */
 class Unit extends Entity
 {
@@ -25,7 +28,9 @@ class Unit extends Entity
      */
     protected $_accessible = [
         'BlockID' => true,
+        'UnitTypeID' => true,
         'UnitName' => true,
-        'UnitFloor' => true
+        'UnitFloor' => true,
+        'block' => true
     ];
 }

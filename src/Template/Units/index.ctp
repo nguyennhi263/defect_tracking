@@ -10,6 +10,8 @@
         <li><?= $this->Html->link(__('New Unit'), ['action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Blocks'), ['controller' => 'Blocks', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Block'), ['controller' => 'Blocks', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Unit Types'), ['controller' => 'UnitTypes', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Unit Type'), ['controller' => 'UnitTypes', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="units index large-9 medium-8 columns content">
@@ -19,6 +21,7 @@
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('UnitID') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('BlockID') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('UnitTypeID') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('UnitName') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('UnitFloor') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
@@ -29,6 +32,7 @@
             <tr>
                 <td><?= $this->Number->format($unit->UnitID) ?></td>
                 <td><?= $unit->has('block') ? $this->Html->link($unit->block->BlockID, ['controller' => 'Blocks', 'action' => 'view', $unit->block->BlockID]) : '' ?></td>
+                <td><?= $unit->has('unit_type') ? $this->Html->link($unit->unit_type->name, ['controller' => 'UnitTypes', 'action' => 'view', $unit->unit_type->UnitTypeID]) : '' ?></td>
                 <td><?= h($unit->UnitName) ?></td>
                 <td><?= $this->Number->format($unit->UnitFloor) ?></td>
                 <td class="actions">

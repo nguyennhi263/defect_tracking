@@ -24,7 +24,10 @@ class UnitsTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.units'
+        'app.units',
+        'app.blocks',
+        'app.phases',
+        'app.projects'
     ];
 
     /**

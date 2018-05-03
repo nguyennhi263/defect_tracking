@@ -21,7 +21,12 @@ class CreateUnits extends AbstractMigration
             ->addPrimaryKey(['UnitID']);
         $table->addColumn('BlockID', 'integer', [
             'default' => null,
-            'limit' => 255,
+            'limit' => 11,
+            'null' => false,
+        ]);
+        $table->addColumn('UnitTypeID', 'integer', [
+            'default' => null,
+            'limit' => 11,
             'null' => false,
         ]);
         $table->addColumn('UnitName', 'string', [
@@ -31,7 +36,7 @@ class CreateUnits extends AbstractMigration
         ]);
         $table->addColumn('UnitFloor', 'integer', [
             'default' => null,
-            'limit' => 255,
+            'limit' => 11,
             'null' => false,
         ]);
         $table->create();

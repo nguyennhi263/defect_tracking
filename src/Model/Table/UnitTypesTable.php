@@ -36,6 +36,9 @@ class UnitTypesTable extends Table
         $this->hasMany('DefectPlaces', [
             'foreignKey' => 'UnitTypeID'
         ]);
+        $this->hasMany('Units', [
+            'foreignKey' => 'UnitTypeID'
+        ]);
     }
 
     /**

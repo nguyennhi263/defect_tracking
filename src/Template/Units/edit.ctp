@@ -16,6 +16,8 @@
         <li><?= $this->Html->link(__('List Units'), ['action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('List Blocks'), ['controller' => 'Blocks', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Block'), ['controller' => 'Blocks', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Unit Types'), ['controller' => 'UnitTypes', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Unit Type'), ['controller' => 'UnitTypes', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="units form large-9 medium-8 columns content">
@@ -24,6 +26,7 @@
         <legend><?= __('Edit Unit') ?></legend>
         <?php
             echo $this->Form->control('BlockID', ['options' => $blocks]);
+            echo $this->Form->control('UnitTypeID', ['options' => $unitTypes]);
             echo $this->Form->control('UnitName');
             echo $this->Form->control('UnitFloor');
         ?>

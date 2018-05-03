@@ -21,7 +21,7 @@ class UnitsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Blocks']
+            'contain' => ['Blocks', 'UnitTypes']
         ];
         $units = $this->paginate($this->Units);
 
@@ -38,7 +38,7 @@ class UnitsController extends AppController
     public function view($id = null)
     {
         $unit = $this->Units->get($id, [
-            'contain' => ['Blocks']
+            'contain' => ['Blocks', 'UnitTypes']
         ]);
 
         $this->set('unit', $unit);
@@ -62,7 +62,8 @@ class UnitsController extends AppController
             $this->Flash->error(__('The unit could not be saved. Please, try again.'));
         }
         $blocks = $this->Units->Blocks->find('list', ['limit' => 200]);
-        $this->set(compact('unit', 'blocks'));
+        $unitTypes = $this->Units->UnitTypes->find('list', ['limit' => 200]);
+        $this->set(compact('unit', 'blocks', 'unitTypes'));
     }
 
     /**
@@ -87,7 +88,8 @@ class UnitsController extends AppController
             $this->Flash->error(__('The unit could not be saved. Please, try again.'));
         }
         $blocks = $this->Units->Blocks->find('list', ['limit' => 200]);
-        $this->set(compact('unit', 'blocks'));
+        $unitTypes = $this->Units->UnitTypes->find('list', ['limit' => 200]);
+        $this->set(compact('unit', 'blocks', 'unitTypes'));
     }
 
     /**
