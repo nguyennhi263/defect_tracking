@@ -1,5 +1,4 @@
 jQuery(document).ready(function ($) {
-
     /**
      * Get coordinates on unit map
      */
@@ -36,7 +35,7 @@ jQuery(document).ready(function ($) {
                             coordY:relativeY
                         }),
                         success: function (data, textStatus){
-                            console.log(getListDefectPlace(unit_type_id));
+                            //console.log(getListDefectPlace(unit_type_id));
                             render_unit_places(map, relativeX, relativeY, place_name_val);
                         }
                     });
@@ -62,13 +61,7 @@ jQuery(document).ready(function ($) {
     }
     get_coordinates();
 
-    // set unit places to map
-    function render_unit_places($map, pointX, pointY, place_name, place_id){
-        console.log("testing");
-        html = '<div class="unit-place" style="top:'+pointY+'px; left:'+pointX+'px;">';
-        html += '<div class="place-info"><span class="place-name">'+place_name+'</span>';
-        html += '<span class="place-delete" data-delete-id="'+place_id+'" title="Delete this place"><i class="fa fa-trash" aria-hidden="true"></i></span>';
-        html += '</div></div>';
-        $map.append(html);
-    }
+    
+    
+    getListDefectPlace(1);
 });
