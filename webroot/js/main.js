@@ -61,7 +61,5 @@ jQuery(document).ready(function ($) {
     }
     get_coordinates();
 
-    
-    
     getListDefectPlace(1);
 });
