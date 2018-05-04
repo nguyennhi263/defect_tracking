@@ -43,4 +43,7 @@ use Cake\Routing\Router;
       
     </section>
 </div>
-
+<script type="text/javascript">
+    getListDefectPlace($("#unit-type-id").val());
+    get_coordinates();
+</script>
