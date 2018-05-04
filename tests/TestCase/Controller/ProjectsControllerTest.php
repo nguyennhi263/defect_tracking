@@ -19,7 +19,10 @@ class ProjectsControllerTest extends IntegrationTestCase
         'app.projects',
         'app.phases',
         'app.blocks',
-        'app.units'
+        'app.contractors',
+        'app.units',
+        'app.unit_types',
+        'app.defect_places'
     ];
 
     /**

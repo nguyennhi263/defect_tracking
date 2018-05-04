@@ -1,5 +1,4 @@
 <?php
-use Cake\Routing\Router;
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Project $project
@@ -21,6 +20,6 @@ use Cake\Routing\Router;
             echo $this->Form->control('ProjectName');
         ?>
     </fieldset>
-    <?= $this->Form->button(__('Submit'),['id'=>'insert-project']) ?>
+    <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>
 </div>

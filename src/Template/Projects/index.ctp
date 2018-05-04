@@ -4,7 +4,6 @@
  * @var \App\Model\Entity\Project[]|\Cake\Collection\CollectionInterface $projects
  */
 ?>
-
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
@@ -13,9 +12,7 @@
         <li><?= $this->Html->link(__('New Phase'), ['controller' => 'Phases', 'action' => 'add']) ?></li>
     </ul>
 </nav>
-
 <div class="projects index large-9 medium-8 columns content">
-    <canvas id="myChart" width="200" height="100"></canvas>
     <h3><?= __('Projects') ?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
@@ -50,4 +47,3 @@
         <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
     </div>
 </div>
-

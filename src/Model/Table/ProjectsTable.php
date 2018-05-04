@@ -33,10 +33,7 @@ class ProjectsTable extends Table
         $this->setTable('projects');
         $this->setDisplayField('ProjectName');
         $this->setPrimaryKey('ProjectID');
-        $this->hasMany('Phases', [
-            'foreignKey' => 'ProjectID',
-            'propertyName' => 'ProjectName'
-        ]);
+      
     }
 
     /**

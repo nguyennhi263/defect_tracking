@@ -4,7 +4,6 @@
  * @var \App\Model\Entity\Project $project
  */
 ?>
-
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
@@ -30,7 +29,7 @@
     </table>
     <div class="related">
         <h4><?= __('Related Phases') ?></h4>
-        <?php if (!empty($project->phases)): ?>
+        <?php if (!empty($project->ProjectName)): ?>
         <table cellpadding="0" cellspacing="0">
             <tr>
                 <th scope="col"><?= __('PhaseID') ?></th>
@@ -38,7 +37,7 @@
                 <th scope="col"><?= __('ProjectID') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
-            <?php foreach ($project->phases as $phases): ?>
+            <?php foreach ($project->ProjectName as $phases): ?>
             <tr>
                 <td><?= h($phases->PhaseID) ?></td>
                 <td><?= h($phases->PhaseName) ?></td>
