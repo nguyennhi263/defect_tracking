@@ -47,7 +47,7 @@ class CreateDefectItems extends AbstractMigration
             'null' => true,
         ]);
         $table->addColumn('DefectStatus', 'text', [
-            'default' => null,
+            'default' => 'open',
             'null' => false,
         ]);
         $table->addColumn('Note', 'string', [

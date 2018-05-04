@@ -31,7 +31,7 @@ class UnitsTable extends Table
         parent::initialize($config);
 
         $this->setTable('units');
-        $this->setDisplayField('UnitID');
+        $this->setDisplayField('UnitID','UnitName');
         $this->setPrimaryKey('UnitID');
         $this->belongsTo('Blocks', [
             'foreignKey' => 'BlockID',

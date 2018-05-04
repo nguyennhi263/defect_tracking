@@ -39,10 +39,6 @@ class TradeDescriptionsTable extends Table
                     'foreignKey' => 'TradeID',
                     'joinType' => 'INNER'
                 ]);
-        $this->hasMany('DefectItems', [
-            'foreignKey' => 'TradeDescriptionID',
-            'propertyName' => 'TradeDescriptionDetail'
-        ]);
         $this->addBehavior('Timestamp');
     }
 
