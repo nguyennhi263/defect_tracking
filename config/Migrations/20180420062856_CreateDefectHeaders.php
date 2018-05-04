@@ -24,10 +24,6 @@ class CreateDefectHeaders extends AbstractMigration
             'limit' => 11,
             'null' => false,
         ]);
-        $table->addColumn('RecordStatus', 'text', [
-            'default' => null,
-            'null' => false,
-        ]);
         $table->addColumn('created', 'datetime', [
             'default' => null,
             'null' => false,

@@ -26,7 +26,6 @@
         <legend><?= __('Edit Defect Header') ?></legend>
         <?php
             echo $this->Form->control('UnitID', ['options' => $units]);
-            echo $this->Form->control('RecordStatus');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

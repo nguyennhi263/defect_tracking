@@ -37,7 +37,7 @@ class DefectHeadersTable extends Table
         $this->setPrimaryKey('DefectID');
 
         $this->addBehavior('Timestamp');
-        $this->belongsTo('Units', [
+         $this->belongsTo('Units', [
             'foreignKey' => 'UnitID',
             'joinType' => 'INNER',
             'propertyName' => 'UnitNo'
@@ -63,11 +63,6 @@ class DefectHeadersTable extends Table
             ->integer('UnitID')
             ->requirePresence('UnitID', 'create')
             ->notEmpty('UnitID');
-
-        $validator
-            ->scalar('RecordStatus')
-            ->requirePresence('RecordStatus', 'create')
-            ->notEmpty('RecordStatus');
 
         return $validator;
     }

@@ -8,9 +8,11 @@ use Cake\ORM\Entity;
  *
  * @property int $DefectID
  * @property int $UnitID
- * @property string $RecordStatus
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
+ *
+ * @property \App\Model\Entity\Unit $UnitNo
+ * @property \App\Model\Entity\DefectItem[] $defect_items
  */
 class DefectHeader extends Entity
 {
@@ -26,8 +28,9 @@ class DefectHeader extends Entity
      */
     protected $_accessible = [
         'UnitID' => true,
-        'RecordStatus' => true,
         'created' => true,
-        'modified' => true
+        'modified' => true,
+        'UnitNo' => true,
+        'defect_items' => true
     ];
 }

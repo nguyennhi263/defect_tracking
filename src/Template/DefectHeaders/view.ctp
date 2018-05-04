@@ -37,10 +37,6 @@
             <td><?= h($defectHeader->modified) ?></td>
         </tr>
     </table>
-    <div class="row">
-        <h4><?= __('RecordStatus') ?></h4>
-        <?= $this->Text->autoParagraph(h($defectHeader->RecordStatus)); ?>
-    </div>
     <div class="related">
         <h4><?= __('Related Defect Items') ?></h4>
         <?php if (!empty($defectHeader->defect_items)): ?>
@@ -51,7 +47,6 @@
                 <th scope="col"><?= __('TradeDescriptionID') ?></th>
                 <th scope="col"><?= __('ImageFileNameBefore') ?></th>
                 <th scope="col"><?= __('ImageFileNameAfter') ?></th>
-                <th scope="col"><?= __('ContractorID') ?></th>
                 <th scope="col"><?= __('PlaceID') ?></th>
                 <th scope="col"><?= __('CloseDate') ?></th>
                 <th scope="col"><?= __('DefectStatus') ?></th>
@@ -67,7 +62,6 @@
                 <td><?= h($defectItems->TradeDescriptionID) ?></td>
                 <td><?= h($defectItems->ImageFileNameBefore) ?></td>
                 <td><?= h($defectItems->ImageFileNameAfter) ?></td>
-                <td><?= h($defectItems->ContractorID) ?></td>
                 <td><?= h($defectItems->PlaceID) ?></td>
                 <td><?= h($defectItems->CloseDate) ?></td>
                 <td><?= h($defectItems->DefectStatus) ?></td>

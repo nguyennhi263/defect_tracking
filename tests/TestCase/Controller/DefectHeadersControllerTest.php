@@ -21,7 +21,13 @@ class DefectHeadersControllerTest extends IntegrationTestCase
         'app.blocks',
         'app.phases',
         'app.projects',
-        'app.defect_items'
+        'app.contractors',
+        'app.unit_types',
+        'app.defect_places',
+        'app.defect_items',
+        'app.trade_descriptions',
+        'app.trades',
+        'app.trade_types'
     ];
 
     /**

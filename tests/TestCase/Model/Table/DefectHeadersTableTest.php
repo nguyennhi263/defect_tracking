@@ -24,7 +24,18 @@ class DefectHeadersTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.defect_headers'
+        'app.defect_headers',
+        'app.units',
+        'app.blocks',
+        'app.phases',
+        'app.projects',
+        'app.contractors',
+        'app.unit_types',
+        'app.defect_places',
+        'app.defect_items',
+        'app.trade_descriptions',
+        'app.trades',
+        'app.trade_types'
     ];
 
     /**
