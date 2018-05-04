@@ -31,10 +31,11 @@ class ProjectsTable extends Table
         parent::initialize($config);
 
         $this->setTable('projects');
-        $this->setDisplayField('ProjectID');
+        $this->setDisplayField('ProjectName');
         $this->setPrimaryKey('ProjectID');
         $this->hasMany('Phases', [
-            'foreignKey' => 'ProjectID'
+            'foreignKey' => 'ProjectID',
+            'propertyName' => 'ProjectName'
         ]);
     }
 

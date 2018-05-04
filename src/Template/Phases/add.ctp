@@ -19,8 +19,9 @@
     <fieldset>
         <legend><?= __('Add Phase') ?></legend>
         <?php
-            echo $this->Form->control('PhaseName');
             echo $this->Form->control('ProjectID', ['options' => $projects]);
+            echo $this->Form->control('PhaseName');
+           
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

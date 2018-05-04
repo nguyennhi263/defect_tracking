@@ -30,7 +30,7 @@ class UserPositionsTable extends Table
     {
         parent::initialize($config);
         $this->setTable('user_positions');
-        $this->setDisplayField('PositionID');
+        $this->setDisplayField('PositionName');
         $this->setPrimaryKey('PositionID');
         $this->hasMany('Users', [
             'foreignKey' => 'UserPositionID'

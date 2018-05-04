@@ -64,7 +64,7 @@ class DefectItemsController extends AppController
         $defectHeaders = $this->DefectItems->DefectHeaders->find('list', ['limit' => 200]);
         $contractors = $this->DefectItems->Contractors->find('list', ['limit' => 200]);
         $defectPlaces = $this->DefectItems->DefectPlaces->find('list', ['limit' => 200]);
-        $tradeDescriptions = $this->DefectItems->TradeDescriptions->find('list', ['limit' => 200]);
+        $tradeDescriptions = $this->TradeDescriptionsTable->find('list', ['limit' => 200]);
         $this->set(compact('defectItem', 'defectHeaders', 'contractors', 'defectPlaces', 'tradeDescriptions'));
     }
 

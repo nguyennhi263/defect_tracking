@@ -19,7 +19,7 @@
     <fieldset>
         <legend><?= __('Add Block') ?></legend>
         <?php
-            echo $this->Form->control('PhaseName', ['options' => $phases]);
+            echo $this->Form->control('PhaseID', ['options' => $phases]);
             echo $this->Form->control('BlockName');
         ?>
     </fieldset>

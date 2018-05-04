@@ -33,12 +33,16 @@ class TradeDescriptionsTable extends Table
         parent::initialize($config);
 
         $this->setTable('trade_descriptions');
-        $this->setDisplayField('TradeDescriptionID');
+        $this->setDisplayField('TradeDescriptionDetail');
         $this->setPrimaryKey('TradeDescriptionID');
         $this->belongsTo('Trades', [
                     'foreignKey' => 'TradeID',
                     'joinType' => 'INNER'
                 ]);
+        $this->hasMany('DefectItems', [
+            'foreignKey' => 'TradeDescriptionID',
+            'propertyName' => 'TradeDescriptionDetail'
+        ]);
         $this->addBehavior('Timestamp');
     }
 

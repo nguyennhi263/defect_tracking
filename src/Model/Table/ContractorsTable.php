@@ -31,7 +31,7 @@ class ContractorsTable extends Table
         parent::initialize($config);
 
         $this->setTable('contractors');
-        $this->setDisplayField('ContractorID');
+        $this->setDisplayField('ContractorName');
         $this->setPrimaryKey('ContractorID');
     }
 

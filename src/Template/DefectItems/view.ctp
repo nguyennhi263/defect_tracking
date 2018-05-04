@@ -30,15 +30,15 @@
         </tr>
         <tr>
             <th scope="row"><?= __('TradeDescriptionName') ?></th>
-            <td><?= $defectItem->has('TradeDescriptionName') ? $this->Html->link($defectItem->TradeDescriptionName->TradeDescriptionID, ['controller' => 'TradeDescriptions', 'action' => 'view', $defectItem->TradeDescriptionName->TradeDescriptionID]) : '' ?></td>
+            <td><?= $defectItem->has('TradeDescriptionName') ? $this->Html->link($defectItem->TradeDescriptionName->TradeDescriptionName, ['controller' => 'TradeDescriptions', 'action' => 'view', $defectItem->TradeDescriptionName->TradeDescriptionID]) : '' ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('ContractorName') ?></th>
-            <td><?= $defectItem->has('ContractorName') ? $this->Html->link($defectItem->ContractorName->ContractorID, ['controller' => 'Contractors', 'action' => 'view', $defectItem->ContractorName->ContractorID]) : '' ?></td>
+            <td><?= $defectItem->has('ContractorName') ? $this->Html->link($defectItem->ContractorName->ContractorName, ['controller' => 'Contractors', 'action' => 'view', $defectItem->ContractorName->ContractorID]) : '' ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('PlaceName') ?></th>
-            <td><?= $defectItem->has('PlaceName') ? $this->Html->link($defectItem->PlaceName->DefectPlaceID, ['controller' => 'DefectPlaces', 'action' => 'view', $defectItem->PlaceName->DefectPlaceID]) : '' ?></td>
+            <td><?= $defectItem->has('PlaceName') ? $this->Html->link($defectItem->PlaceName->DefectPlaceName, ['controller' => 'DefectPlaces', 'action' => 'view', $defectItem->PlaceName->DefectPlaceID]) : '' ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Note') ?></th>

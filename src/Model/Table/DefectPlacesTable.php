@@ -33,7 +33,7 @@ class DefectPlacesTable extends Table
         parent::initialize($config);
 
         $this->setTable('defect_places');
-        $this->setDisplayField('DefectPlaceID');
+        $this->setDisplayField('DefectPlaceName');
         $this->setPrimaryKey('DefectPlaceID');
 
         $this->addBehavior('Timestamp');

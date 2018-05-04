@@ -31,7 +31,7 @@ class BlocksTable extends Table
         parent::initialize($config);
 
         $this->setTable('blocks');
-        $this->setDisplayField('BlockID');
+        $this->setDisplayField('BlockName');
         $this->setPrimaryKey('BlockID');
         $this->belongsTo('Phases', [
                     'foreignKey' => 'PhaseID',

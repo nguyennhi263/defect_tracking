@@ -54,6 +54,7 @@ class BlocksController extends AppController
         $block = $this->Blocks->newEntity();
         if ($this->request->is('post')) {
             $block = $this->Blocks->patchEntity($block, $this->request->getData());
+            //$block->PhaseID = $this->request->data['order']['status'];
             if ($this->Blocks->save($block)) {
                 $this->Flash->success(__('The block has been saved.'));
                 return $this->redirect(['action' => 'index']);

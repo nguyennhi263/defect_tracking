@@ -33,7 +33,7 @@ class TradesTable extends Table
         parent::initialize($config);
 
         $this->setTable('trades');
-        $this->setDisplayField('TradeID');
+        $this->setDisplayField('TradeName');
         $this->setPrimaryKey('TradeID');
         $this->belongsTo('TradeTypes', [
             'foreignKey' => 'TradeTypeID',

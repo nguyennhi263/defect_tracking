@@ -51,21 +51,24 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
   <!-- Links -->
   <ul class="navbar-nav">
     <li class="nav-item">
-      <a class="nav-link" href="#">Link 1</a>
+      <a class="nav-link" href="#">Defect Management</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Link 2</a>
+      <a class="nav-link" href="#">Project Management</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Trade Management</a>
     </li>
 
     <!-- Dropdown -->
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-        Dropdown link
+        Report
       </a>
       <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">Link 1</a>
-        <a class="dropdown-item" href="#">Link 2</a>
-        <a class="dropdown-item" href="#">Link 3</a>
+        <a class="dropdown-item" href="#">Defect Management</a>
+        <a class="dropdown-item" href="#">Project Management</a>
+        <a class="dropdown-item" href="#">Report</a>
       </div>
     </li>
   </ul>

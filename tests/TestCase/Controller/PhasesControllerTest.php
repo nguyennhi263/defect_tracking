@@ -19,7 +19,9 @@ class PhasesControllerTest extends IntegrationTestCase
         'app.phases',
         'app.projects',
         'app.blocks',
-        'app.units'
+        'app.units',
+        'app.unit_types',
+        'app.defect_places'
     ];
 
     /**

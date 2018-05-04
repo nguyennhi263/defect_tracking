@@ -40,9 +40,9 @@
             <tr>
                 <td><?= $this->Number->format($defectItem->DefectItemID) ?></td>
                 <td><?= $defectItem->has('UnitNo') ? $this->Html->link($defectItem->UnitNo->DefectID, ['controller' => 'DefectHeaders', 'action' => 'view', $defectItem->UnitNo->DefectID]) : '' ?></td>
-                <td><?= $defectItem->has('TradeDescriptionName') ? $this->Html->link($defectItem->TradeDescriptionName->TradeDescriptionID, ['controller' => 'TradeDescriptions', 'action' => 'view', $defectItem->TradeDescriptionName->TradeDescriptionID]) : '' ?></td>
-                <td><?= $defectItem->has('ContractorName') ? $this->Html->link($defectItem->ContractorName->ContractorID, ['controller' => 'Contractors', 'action' => 'view', $defectItem->ContractorName->ContractorID]) : '' ?></td>
-                <td><?= $defectItem->has('PlaceName') ? $this->Html->link($defectItem->PlaceName->DefectPlaceID, ['controller' => 'DefectPlaces', 'action' => 'view', $defectItem->PlaceName->DefectPlaceID]) : '' ?></td>
+                <td><?= $defectItem->has('TradeDescriptionName') ? $this->Html->link($defectItem->TradeDescriptionName->TradeDescriptionName, ['controller' => 'TradeDescriptions', 'action' => 'view', $defectItem->TradeDescriptionName->TradeDescriptionID]) : '' ?></td>
+                <td><?= $defectItem->has('ContractorName') ? $this->Html->link($defectItem->ContractorName->ContractorName, ['controller' => 'Contractors', 'action' => 'view', $defectItem->ContractorName->ContractorID]) : '' ?></td>
+                <td><?= $defectItem->has('PlaceName') ? $this->Html->link($defectItem->PlaceName->DefectPlaceName, ['controller' => 'DefectPlaces', 'action' => 'view', $defectItem->PlaceName->DefectPlaceID]) : '' ?></td>
                 <td><?= h($defectItem->CloseDate) ?></td>
                 <td><?= h($defectItem->Note) ?></td>
                 <td><?= h($defectItem->created) ?></td>
