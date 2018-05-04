@@ -29,7 +29,11 @@ class CreateBlocks extends AbstractMigration
             'limit' => 255,
             'null' => false,
         ]);
-
+        $table->addColumn('ContractorID', 'integer', [
+            'default' => null,
+            'limit' => 11,
+            'null' => false,
+        ]);
         $table->create();
     }
 }

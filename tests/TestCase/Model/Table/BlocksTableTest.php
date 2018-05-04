@@ -24,7 +24,12 @@ class BlocksTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.blocks'
+        'app.blocks',
+        'app.phases',
+        'app.projects',
+        'app.units',
+        'app.unit_types',
+        'app.defect_places'
     ];
 
     /**

@@ -13,8 +13,6 @@
         <li><?= $this->Html->link(__('New Defect Item'), ['action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Defect Headers'), ['controller' => 'DefectHeaders', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Defect Header'), ['controller' => 'DefectHeaders', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Contractors'), ['controller' => 'Contractors', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Contractor'), ['controller' => 'Contractors', 'action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Defect Places'), ['controller' => 'DefectPlaces', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Defect Place'), ['controller' => 'DefectPlaces', 'action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Trade Descriptions'), ['controller' => 'TradeDescriptions', 'action' => 'index']) ?> </li>
@@ -30,11 +28,7 @@
         </tr>
         <tr>
             <th scope="row"><?= __('TradeDescriptionName') ?></th>
-            <td><?= $defectItem->has('TradeDescriptionName') ? $this->Html->link($defectItem->TradeDescriptionName->TradeDescriptionName, ['controller' => 'TradeDescriptions', 'action' => 'view', $defectItem->TradeDescriptionName->TradeDescriptionID]) : '' ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('ContractorName') ?></th>
-            <td><?= $defectItem->has('ContractorName') ? $this->Html->link($defectItem->ContractorName->ContractorName, ['controller' => 'Contractors', 'action' => 'view', $defectItem->ContractorName->ContractorID]) : '' ?></td>
+            <td><?= $defectItem->has('TradeDescriptionName') ? $this->Html->link($defectItem->TradeDescriptionName->TradeDescriptionDetail, ['controller' => 'TradeDescriptions', 'action' => 'view', $defectItem->TradeDescriptionName->TradeDescriptionID]) : '' ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('PlaceName') ?></th>

@@ -21,7 +21,7 @@ class BlocksController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Phases']
+            'contain' => ['Phases', 'Contractors']
         ];
         $blocks = $this->paginate($this->Blocks);
 
@@ -38,7 +38,7 @@ class BlocksController extends AppController
     public function view($id = null)
     {
         $block = $this->Blocks->get($id, [
-            'contain' => ['Phases', 'Units']
+            'contain' => ['Phases', 'Contractors', 'Units']
         ]);
 
         $this->set('block', $block);
@@ -54,15 +54,16 @@ class BlocksController extends AppController
         $block = $this->Blocks->newEntity();
         if ($this->request->is('post')) {
             $block = $this->Blocks->patchEntity($block, $this->request->getData());
-            //$block->PhaseID = $this->request->data['order']['status'];
             if ($this->Blocks->save($block)) {
                 $this->Flash->success(__('The block has been saved.'));
+
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The block could not be saved. Please, try again.'));
         }
         $phases = $this->Blocks->Phases->find('list', ['limit' => 200]);
-        $this->set(compact('block', 'phases'));
+        $contractors = $this->Blocks->Contractors->find('list', ['limit' => 200]);
+        $this->set(compact('block', 'phases', 'contractors'));
     }
 
     /**
@@ -87,7 +88,8 @@ class BlocksController extends AppController
             $this->Flash->error(__('The block could not be saved. Please, try again.'));
         }
         $phases = $this->Blocks->Phases->find('list', ['limit' => 200]);
-        $this->set(compact('block', 'phases'));
+        $contractors = $this->Blocks->Contractors->find('list', ['limit' => 200]);
+        $this->set(compact('block', 'phases', 'contractors'));
     }
 
     /**

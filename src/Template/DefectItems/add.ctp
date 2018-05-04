@@ -10,8 +10,6 @@
         <li><?= $this->Html->link(__('List Defect Items'), ['action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('List Defect Headers'), ['controller' => 'DefectHeaders', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Defect Header'), ['controller' => 'DefectHeaders', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Contractors'), ['controller' => 'Contractors', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Contractor'), ['controller' => 'Contractors', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Defect Places'), ['controller' => 'DefectPlaces', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Defect Place'), ['controller' => 'DefectPlaces', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Trade Descriptions'), ['controller' => 'TradeDescriptions', 'action' => 'index']) ?></li>
@@ -27,7 +25,6 @@
             echo $this->Form->control('TradeDescriptionID', ['options' => $tradeDescriptions]);
             echo $this->Form->control('ImageFileNameBefore');
             echo $this->Form->control('ImageFileNameAfter');
-            echo $this->Form->control('ContractorID', ['options' => $contractors]);
             echo $this->Form->control('PlaceID', ['options' => $defectPlaces]);
             echo $this->Form->control('CloseDate', ['empty' => true]);
             echo $this->Form->control('DefectStatus');

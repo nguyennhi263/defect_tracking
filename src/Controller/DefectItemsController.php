@@ -21,7 +21,7 @@ class DefectItemsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['DefectHeaders', 'Contractors', 'DefectPlaces', 'TradeDescriptions']
+            'contain' => ['DefectHeaders', 'DefectPlaces', 'TradeDescriptions']
         ];
         $defectItems = $this->paginate($this->DefectItems);
 
@@ -38,7 +38,7 @@ class DefectItemsController extends AppController
     public function view($id = null)
     {
         $defectItem = $this->DefectItems->get($id, [
-            'contain' => ['DefectHeaders', 'Contractors', 'DefectPlaces', 'TradeDescriptions']
+            'contain' => ['DefectHeaders', 'DefectPlaces', 'TradeDescriptions']
         ]);
 
         $this->set('defectItem', $defectItem);
@@ -62,10 +62,9 @@ class DefectItemsController extends AppController
             $this->Flash->error(__('The defect item could not be saved. Please, try again.'));
         }
         $defectHeaders = $this->DefectItems->DefectHeaders->find('list', ['limit' => 200]);
-        $contractors = $this->DefectItems->Contractors->find('list', ['limit' => 200]);
         $defectPlaces = $this->DefectItems->DefectPlaces->find('list', ['limit' => 200]);
-        $tradeDescriptions = $this->TradeDescriptionsTable->find('list', ['limit' => 200]);
-        $this->set(compact('defectItem', 'defectHeaders', 'contractors', 'defectPlaces', 'tradeDescriptions'));
+        $tradeDescriptions = $this->DefectItems->TradeDescriptions->find('list', ['limit' => 200]);
+        $this->set(compact('defectItem', 'defectHeaders', 'defectPlaces', 'tradeDescriptions'));
     }
 
     /**
@@ -90,10 +89,9 @@ class DefectItemsController extends AppController
             $this->Flash->error(__('The defect item could not be saved. Please, try again.'));
         }
         $defectHeaders = $this->DefectItems->DefectHeaders->find('list', ['limit' => 200]);
-        $contractors = $this->DefectItems->Contractors->find('list', ['limit' => 200]);
         $defectPlaces = $this->DefectItems->DefectPlaces->find('list', ['limit' => 200]);
         $tradeDescriptions = $this->DefectItems->TradeDescriptions->find('list', ['limit' => 200]);
-        $this->set(compact('defectItem', 'defectHeaders', 'contractors', 'defectPlaces', 'tradeDescriptions'));
+        $this->set(compact('defectItem', 'defectHeaders', 'defectPlaces', 'tradeDescriptions'));
     }
 
     /**

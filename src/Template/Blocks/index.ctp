@@ -10,6 +10,8 @@
         <li><?= $this->Html->link(__('New Block'), ['action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Phases'), ['controller' => 'Phases', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Phase'), ['controller' => 'Phases', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Contractors'), ['controller' => 'Contractors', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Contractor'), ['controller' => 'Contractors', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Units'), ['controller' => 'Units', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Unit'), ['controller' => 'Units', 'action' => 'add']) ?></li>
     </ul>
@@ -22,6 +24,7 @@
                 <th scope="col"><?= $this->Paginator->sort('BlockID') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('PhaseID') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('BlockName') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('ContractorID') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -29,8 +32,9 @@
             <?php foreach ($blocks as $block): ?>
             <tr>
                 <td><?= $this->Number->format($block->BlockID) ?></td>
-                <td><?= $block->has('phase') ? $this->Html->link($block->phase->PhaseID, ['controller' => 'Phases', 'action' => 'view', $block->phase->PhaseID]) : '' ?></td>
+                <td><?= $block->has('phase') ? $this->Html->link($block->phase->PhaseName, ['controller' => 'Phases', 'action' => 'view', $block->phase->PhaseID]) : '' ?></td>
                 <td><?= h($block->BlockName) ?></td>
+                <td><?= $block->has('contractor') ? $this->Html->link($block->contractor->ContractorName, ['controller' => 'Contractors', 'action' => 'view', $block->contractor->ContractorID]) : '' ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $block->BlockID]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $block->BlockID]) ?>

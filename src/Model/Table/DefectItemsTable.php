@@ -37,15 +37,10 @@ class DefectItemsTable extends Table
         $this->setPrimaryKey('DefectItemID');
 
         $this->addBehavior('Timestamp');
-        $this->belongsTo('DefectHeaders', [
+         $this->belongsTo('DefectHeaders', [
             'foreignKey' => 'DefectID',
             'joinType' => 'INNER',
             'propertyName' => 'UnitNo'
-        ]);
-        $this->belongsTo('Contractors', [
-            'foreignKey' => 'ContractorID',
-            'joinType' => 'INNER',
-            'propertyName' => 'ContractorName'
         ]);
         $this->belongsTo('DefectPlaces', [
             'foreignKey' => 'PlaceID',
@@ -62,8 +57,6 @@ class DefectItemsTable extends Table
             'joinType' => 'INNER',
             'propertyName' => 'TradeDescriptionName'
         ]);
-
-
     }
 
     /**
@@ -95,11 +88,6 @@ class DefectItemsTable extends Table
         $validator
             ->scalar('ImageFileNameAfter')
             ->allowEmpty('ImageFileNameAfter');
-
-        $validator
-            ->integer('ContractorID')
-            ->requirePresence('ContractorID', 'create')
-            ->notEmpty('ContractorID');
 
         $validator
             ->integer('PlaceID')

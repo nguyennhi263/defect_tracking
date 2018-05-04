@@ -22,9 +22,9 @@ class DefectItemsControllerTest extends IntegrationTestCase
         'app.blocks',
         'app.phases',
         'app.projects',
+        'app.contractors',
         'app.unit_types',
         'app.defect_places',
-        'app.contractors',
         'app.trade_descriptions',
         'app.trades',
         'app.trade_types'

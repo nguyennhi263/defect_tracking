@@ -20,6 +20,7 @@ class BlocksFixture extends TestFixture
         'BlockID' => ['type' => 'integer', 'length' => 10, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
         'PhaseID' => ['type' => 'tinyinteger', 'length' => 4, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
         'BlockName' => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => null, 'collate' => 'utf8_unicode_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
+        'ContractorID' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['BlockID'], 'length' => []],
         ],
@@ -39,7 +40,8 @@ class BlocksFixture extends TestFixture
         [
             'BlockID' => 1,
             'PhaseID' => 1,
-            'BlockName' => 'Lorem ipsum dolor sit amet'
+            'BlockName' => 'Lorem ipsum dolor sit amet',
+            'ContractorID' => 1
         ],
     ];
 }

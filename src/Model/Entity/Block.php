@@ -9,6 +9,10 @@ use Cake\ORM\Entity;
  * @property int $BlockID
  * @property int $PhaseID
  * @property string $BlockName
+ * @property int $ContractorID
+ *
+ * @property \App\Model\Entity\Phase $phase
+ * @property \App\Model\Entity\Unit[] $units
  */
 class Block extends Entity
 {
@@ -24,6 +28,9 @@ class Block extends Entity
      */
     protected $_accessible = [
         'PhaseID' => true,
-        'BlockName' => true
+        'BlockName' => true,
+        'ContractorID' => true,
+        'phase' => true,
+        'units' => true
     ];
 }

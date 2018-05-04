@@ -33,6 +33,9 @@ class ContractorsTable extends Table
         $this->setTable('contractors');
         $this->setDisplayField('ContractorName');
         $this->setPrimaryKey('ContractorID');
+        $this->hasMany('Blocks', [
+            'foreignKey' => 'ContractorID'
+        ]);
     }
 
     /**

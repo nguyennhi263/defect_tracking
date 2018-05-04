@@ -10,8 +10,6 @@
         <li><?= $this->Html->link(__('New Defect Item'), ['action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Defect Headers'), ['controller' => 'DefectHeaders', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Defect Header'), ['controller' => 'DefectHeaders', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Contractors'), ['controller' => 'Contractors', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Contractor'), ['controller' => 'Contractors', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Defect Places'), ['controller' => 'DefectPlaces', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Defect Place'), ['controller' => 'DefectPlaces', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Trade Descriptions'), ['controller' => 'TradeDescriptions', 'action' => 'index']) ?></li>
@@ -26,7 +24,6 @@
                 <th scope="col"><?= $this->Paginator->sort('DefectItemID') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('DefectID') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('TradeDescriptionID') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('ContractorID') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('PlaceID') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('CloseDate') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('Note') ?></th>
@@ -40,8 +37,7 @@
             <tr>
                 <td><?= $this->Number->format($defectItem->DefectItemID) ?></td>
                 <td><?= $defectItem->has('UnitNo') ? $this->Html->link($defectItem->UnitNo->DefectID, ['controller' => 'DefectHeaders', 'action' => 'view', $defectItem->UnitNo->DefectID]) : '' ?></td>
-                <td><?= $defectItem->has('TradeDescriptionName') ? $this->Html->link($defectItem->TradeDescriptionName->TradeDescriptionName, ['controller' => 'TradeDescriptions', 'action' => 'view', $defectItem->TradeDescriptionName->TradeDescriptionID]) : '' ?></td>
-                <td><?= $defectItem->has('ContractorName') ? $this->Html->link($defectItem->ContractorName->ContractorName, ['controller' => 'Contractors', 'action' => 'view', $defectItem->ContractorName->ContractorID]) : '' ?></td>
+                <td><?= $defectItem->has('TradeDescriptionName') ? $this->Html->link($defectItem->TradeDescriptionName->TradeDescriptionDetail, ['controller' => 'TradeDescriptions', 'action' => 'view', $defectItem->TradeDescriptionName->TradeDescriptionID]) : '' ?></td>
                 <td><?= $defectItem->has('PlaceName') ? $this->Html->link($defectItem->PlaceName->DefectPlaceName, ['controller' => 'DefectPlaces', 'action' => 'view', $defectItem->PlaceName->DefectPlaceID]) : '' ?></td>
                 <td><?= h($defectItem->CloseDate) ?></td>
                 <td><?= h($defectItem->Note) ?></td>

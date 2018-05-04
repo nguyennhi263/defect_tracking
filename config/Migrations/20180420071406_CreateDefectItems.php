@@ -37,11 +37,6 @@ class CreateDefectItems extends AbstractMigration
             'default' => null,
             'null' => true,
         ]);
-        $table->addColumn('ContractorID', 'integer', [
-            'default' => null,
-            'limit' => 11,
-            'null' => false,
-        ]);
         $table->addColumn('PlaceID', 'integer', [
             'default' => null,
             'limit' => 11,

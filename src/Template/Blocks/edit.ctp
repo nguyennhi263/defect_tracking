@@ -16,6 +16,8 @@
         <li><?= $this->Html->link(__('List Blocks'), ['action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('List Phases'), ['controller' => 'Phases', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Phase'), ['controller' => 'Phases', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Contractors'), ['controller' => 'Contractors', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Contractor'), ['controller' => 'Contractors', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Units'), ['controller' => 'Units', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Unit'), ['controller' => 'Units', 'action' => 'add']) ?></li>
     </ul>
@@ -25,8 +27,9 @@
     <fieldset>
         <legend><?= __('Edit Block') ?></legend>
         <?php
-            echo $this->Form->control('PhaseName', ['options' => $phases]);
+            echo $this->Form->control('PhaseID', ['options' => $phases]);
             echo $this->Form->control('BlockName');
+            echo $this->Form->control('ContractorID', ['options' => $contractors]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

@@ -11,13 +11,17 @@ use Cake\ORM\Entity;
  * @property int $TradeDescriptionID
  * @property string $ImageFileNameBefore
  * @property string $ImageFileNameAfter
- * @property int $ContractorID
  * @property int $PlaceID
  * @property \Cake\I18n\FrozenTime $CloseDate
  * @property string $DefectStatus
  * @property string $Note
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
+ *
+ * @property \App\Model\Entity\DefectHeader $UnitNo
+ * @property \App\Model\Entity\Contractor $ContractorName
+ * @property \App\Model\Entity\DefectPlace $PlaceName
+ * @property \App\Model\Entity\TradeDescription $TradeDescriptionName
  */
 class DefectItem extends Entity
 {
@@ -36,12 +40,15 @@ class DefectItem extends Entity
         'TradeDescriptionID' => true,
         'ImageFileNameBefore' => true,
         'ImageFileNameAfter' => true,
-        'ContractorID' => true,
         'PlaceID' => true,
         'CloseDate' => true,
         'DefectStatus' => true,
         'Note' => true,
         'created' => true,
-        'modified' => true
+        'modified' => true,
+        'UnitNo' => true,
+        'ContractorName' => true,
+        'PlaceName' => true,
+        'TradeDescriptionName' => true
     ];
 }

@@ -37,6 +37,10 @@ class BlocksTable extends Table
                     'foreignKey' => 'PhaseID',
                     'joinType' => 'INNER'
                 ]);
+        $this->belongsTo('Contractors', [
+                    'foreignKey' => 'ContractorID',
+                    'joinType' => 'INNER'
+                ]);
         $this->hasMany('Units', [
             'foreignKey' => 'BlockID'
         ]);
@@ -63,6 +67,11 @@ class BlocksTable extends Table
             ->maxLength('BlockName', 255)
             ->requirePresence('BlockName', 'create')
             ->notEmpty('BlockName');
+
+        $validator
+            ->integer('ContractorID')
+            ->requirePresence('ContractorID', 'create')
+            ->notEmpty('ContractorID');
 
         return $validator;
     }

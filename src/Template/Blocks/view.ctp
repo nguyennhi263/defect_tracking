@@ -13,20 +13,26 @@
         <li><?= $this->Html->link(__('New Block'), ['action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Phases'), ['controller' => 'Phases', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Phase'), ['controller' => 'Phases', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Contractors'), ['controller' => 'Contractors', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Contractor'), ['controller' => 'Contractors', 'action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Units'), ['controller' => 'Units', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Unit'), ['controller' => 'Units', 'action' => 'add']) ?> </li>
     </ul>
 </nav>
 <div class="blocks view large-9 medium-8 columns content">
-    <h3><?= h($block->BlockID) ?></h3>
+    <h3><?= h($block->BlockName) ?></h3>
     <table class="vertical-table">
         <tr>
             <th scope="row"><?= __('Phase') ?></th>
-            <td><?= $block->has('phase') ? $this->Html->link($block->phase->PhaseID, ['controller' => 'Phases', 'action' => 'view', $block->phase->PhaseID]) : '' ?></td>
+            <td><?= $block->has('phase') ? $this->Html->link($block->phase->PhaseName, ['controller' => 'Phases', 'action' => 'view', $block->phase->PhaseID]) : '' ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('BlockName') ?></th>
             <td><?= h($block->BlockName) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Contractor') ?></th>
+            <td><?= $block->has('contractor') ? $this->Html->link($block->contractor->ContractorName, ['controller' => 'Contractors', 'action' => 'view', $block->contractor->ContractorID]) : '' ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('BlockID') ?></th>
@@ -40,6 +46,7 @@
             <tr>
                 <th scope="col"><?= __('UnitID') ?></th>
                 <th scope="col"><?= __('BlockID') ?></th>
+                <th scope="col"><?= __('UnitTypeID') ?></th>
                 <th scope="col"><?= __('UnitName') ?></th>
                 <th scope="col"><?= __('UnitFloor') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
@@ -48,6 +55,7 @@
             <tr>
                 <td><?= h($units->UnitID) ?></td>
                 <td><?= h($units->BlockID) ?></td>
+                <td><?= h($units->UnitTypeID) ?></td>
                 <td><?= h($units->UnitName) ?></td>
                 <td><?= h($units->UnitFloor) ?></td>
                 <td class="actions">
