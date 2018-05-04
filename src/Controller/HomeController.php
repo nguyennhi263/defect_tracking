@@ -19,27 +19,49 @@ class HomeController extends AppController
     }
     public function getCountDefectByMonth()
     {      
-        $listData = $this->DefectItemsTable->find();
+        /*
+             query("SELECT COUNT(DefectItemID),MONTH(created) FROM defect_items GROUP BY YEAR(created), MONTH(created);")
+        */
+        $listDataOpen = $this->DefectItemsTable->find();
         // select date created as month
-        $month = $listData->func()->month([
+        $month = $listDataOpen->func()->month([
             'created' => 'identifier'
         ]);
         // select count(DefectItemID)
-        $value = $listData->func()->count('DefectItemID');
-        $listData->select([
+        $value = $listDataOpen->func()->count('DefectItemID');
+        $listDataOpen->select([
             'month' => $month,
             'value' => $value
         ]);
         // group by created
-        $listData->group('created');
+        $listDataOpen->group(['MONTH(created)','YEAR(created)']);
+        $listDataOpen->order(['created' => 'ASC']);
         // where created date in last 12 month
-        $listData->where(['created >=' => new Time('-12 months')]);
-
-        /*
-             query("SELECT COUNT(DefectItemID),MONTH(created) FROM defect_items GROUP BY YEAR(created), MONTH(created);")->toArray();
+        $listDataOpen->where(['created >=' => new Time('-12 months')]);
+        /**
+            get list defect closed
         */
-        $this->set(['listData' => $listData,
-                    '_serialize' => ['listData']
+
+        $listDataClose = $this->DefectItemsTable->find();
+        // select date created as month
+        $month = $listDataClose->func()->month([
+            'created' => 'identifier'
+        ]);
+        // select count(DefectItemID)
+        $value = $listDataClose->func()->count('DefectItemID');
+        $listDataClose->select([
+            'month' => $month,
+            'value2' => $value
+        ]);
+        // group by created
+        $listDataClose->group('created');
+        // where created date in last 12 month
+        $listDataClose->where(['created >=' => new Time('-12 months'),
+                            'DefectStatus'=>'close']);
+       
+        
+        $this->set(['listDataOpen' => $listDataOpen,'listDataClose'=>$listDataClose,
+                    '_serialize' => ['listDataOpen']
                 ]);
     }
 }
