@@ -1,7 +1,9 @@
 jQuery(document).ready(function ($) {
    // getCountDefectByMonthChart();
 });
-// set unit places to map
+/*
+  set unit places to map
+*/ 
 function render_unit_places($map, pointX, pointY, place_name, place_id){
     console.log("testing");
     html = '<div class="unit-place" style="top:'+pointY+'px; left:'+pointX+'px;">';
@@ -10,7 +12,9 @@ function render_unit_places($map, pointX, pointY, place_name, place_id){
     html += '</div></div>';
     $map.append(html);
 }
-// get all defect list to show point
+/*
+  get all defect list -> show point
+*/ 
 function getListDefectPlace($id) {
     var map = $("#unit-map-container .unit-map");
     $.ajax({
@@ -32,6 +36,82 @@ function getListDefectPlace($id) {
         }
     });
 }
+/*
+  get trade description
+*/
+function getDefectItem_Place($TradeID){
+  var map = $("#unit-map-container .unit-map");
+  $.ajax({
+        dataType: "html",
+        method: "GET",
+        evalScripts: true,
+        url: "/defect_tracking/defect-places/view/" + $TradeID + ".json",
+        data: ({}),
+        success: function (data, textStatus) {
+           data = jQuery.parseJSON(data);
+           $.each(data,function(i,listDefectPlace){
+                $.each(listDefectPlace,function(j,defectplaces){
+                     render_unit_places(map, defectplaces.coordX, defectplaces.coordY, $Trade);
+                    //console.log(defectplaces.DefectPlaceName);
+                });
+            
+            });
+         
+        }
+    });
+}
+/*
+  get defect item + defect place -> -> show on map
+*/
+function getDefectItem_Place($placeID,$ItemID,$Trade){
+  var map = $("#unit-map-container .unit-map");
+  $.ajax({
+        dataType: "html",
+        method: "GET",
+        evalScripts: true,
+        url: "/defect_tracking/defect-places/view/" + $placeID + ".json",
+        data: ({}),
+        success: function (data, textStatus) {
+           data = jQuery.parseJSON(data);
+           $.each(data,function(i,listDefectPlace){
+                $.each(listDefectPlace,function(j,defectplaces){
+                     render_unit_places(map, defectplaces.coordX, defectplaces.coordY, $Trade);
+                    //console.log(defectplaces.DefectPlaceName);
+                });
+            
+            });
+         
+        }
+    });
+}
+/*
+  Get list defect items by defect header 
+*/
+function getDefectItems($idDefectItem){
+
+      $.ajax({
+          dataType: "html",
+          method: "GET",
+          evalScripts: true,
+          url: "/defect_tracking/defect-headers/view/" + $idDefectItem + ".json",
+          data: ({}),
+          success: function (data, textStatus) {
+             data = jQuery.parseJSON(data);
+             $.each(data,function(i,listDefectItem){
+                   console.log(listDefectItem);
+                  $.each(listDefectItem,function(j,item){
+                    getDefectItem_Place();
+                   console.log(item['PlaceID']);
+                });
+              });
+           
+          }
+      });
+}
+
+/*
+  chart defect by month
+*/
 function getCountDefectByMonthChart(){
     //alert(a);
     $.ajax({
@@ -61,7 +141,9 @@ function getCountDefectByMonthChart(){
         }
     });
 }
-// input data to chart
+/*
+  input data to chart
+*/ 
 function showCountDefectByMonthChart($label,$openDefect,$closeDefect){
     var ctx = $("#CountDefectByMonth");
          new Chart(document.getElementById("CountDefectByMonth"), {
@@ -89,7 +171,9 @@ function showCountDefectByMonthChart($label,$openDefect,$closeDefect){
           }
         });
 }
-// return Month name
+/*
+   return Month name
+*/
 function getMonthName(monthNumber) {
   var months = ['January', 'February', 'March', 'April', 'May', 'June',
   'July', 'August', 'September', 'October', 'November', 'December'];

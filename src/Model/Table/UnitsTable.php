@@ -31,7 +31,7 @@ class UnitsTable extends Table
         parent::initialize($config);
 
         $this->setTable('units');
-        $this->setDisplayField('UnitID','UnitName');
+        $this->setDisplayField('UnitName');
         $this->setPrimaryKey('UnitID');
         $this->belongsTo('Blocks', [
             'foreignKey' => 'BlockID',
@@ -41,7 +41,9 @@ class UnitsTable extends Table
             'foreignKey' => 'UnitTypeID',
             'joinType' => 'INNER'
         ]);
-        
+        $this->hasMany('DefectHeaders', [
+            'foreignKey' => 'UnitID'
+        ]);
     }
 
     /**

@@ -38,9 +38,12 @@ class DefectHeadersController extends AppController
     public function view($id = null)
     {
         $defectHeader = $this->DefectHeaders->get($id, [
-            'contain' => ['Units', 'DefectItems']
+            'contain' => ['Units', 'DefectItems','Units.UnitTypes']
         ]);
-
+        $listDefectItem = $defectHeader->defect_items;
+        $this->set(['listDefectItem' => $listDefectItem,
+                            '_serialize' => ['listDefectItem']
+                        ]);
         $this->set('defectHeader', $defectHeader);
     }
 
