@@ -16,7 +16,7 @@
     </ul>
 </nav>
 <div class="projects view large-9 medium-8 columns content">
-    <h3><?= h($project->ProjectID) ?></h3>
+    <h3><?= h($project->ProjectName) ?></h3>
     <table class="vertical-table">
         <tr>
             <th scope="row"><?= __('ProjectName') ?></th>
@@ -29,7 +29,7 @@
     </table>
     <div class="related">
         <h4><?= __('Related Phases') ?></h4>
-        <?php if (!empty($project->ProjectName)): ?>
+        <?php if (!empty($project->phases)): ?>
         <table cellpadding="0" cellspacing="0">
             <tr>
                 <th scope="col"><?= __('PhaseID') ?></th>
@@ -37,7 +37,7 @@
                 <th scope="col"><?= __('ProjectID') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
-            <?php foreach ($project->ProjectName as $phases): ?>
+            <?php foreach ($project->phases as $phases): ?>
             <tr>
                 <td><?= h($phases->PhaseID) ?></td>
                 <td><?= h($phases->PhaseName) ?></td>
