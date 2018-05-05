@@ -51,13 +51,14 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
   <!-- Links -->
   <ul class="navbar-nav">
     <li class="nav-item">
-      <a class="nav-link" href="#">Defect Management</a>
+     
+      <?= $this->Html->link(__('Defect Management'), ['controller' => 'DefectHeaders', 'action' => 'index'],['class'=>'nav-link']) ?>
+    </li>
+    <li>
+    <?= $this->Html->link(__('Project Management'), ['controller' => 'Projects', 'action' => 'index'],['class'=>'nav-link']) ?>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Project Management</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Trade Management</a>
+      <?= $this->Html->link(__('Trade Management'), ['controller' => 'Trades', 'action' => 'index'],['class'=>'nav-link']) ?>
     </li>
 
     <!-- Dropdown -->
