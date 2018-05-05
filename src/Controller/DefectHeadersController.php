@@ -40,11 +40,62 @@ class DefectHeadersController extends AppController
         $defectHeader = $this->DefectHeaders->get($id, [
             'contain' => ['Units', 'DefectItems','Units.UnitTypes']
         ]);
+        /*
+            **Get Project Info
+        */
+        $query = $this->BlocksTable->find()->where(['BlockID'=>$defectHeader->UnitName->BlockID]);
+        $block = $query->first();
+
+        $query = $this->PhasesTable->find()->where(['PhaseID'=>$block->PhaseID]);
+        $phase = $query->first();
+
+        $query = $this->ProjectsTable->find()->where(['ProjectID'=>$phase->ProjectID]);
+        $project = $query->first();
+        /*
+            ** Get list data association
+        */
+        $tradeArray=[];
+        $detailArray= [];
+        $placeArray = [];
         $listDefectItem = $defectHeader->defect_items;
+        if (!empty($listDefectItem)){
+            foreach ($defectHeader->defect_items as $defectItems){
+                /*
+                    get ID
+                */
+                $detailID = $defectItems->TradeDescriptionID;
+                $placeID = $defectItems->PlaceID;
+                $test =  $defectItems->DefectItemID;
+                /*
+                    get Name
+                */
+                $query = $this->TradeDescriptionsTable->find()->where(['TradeDescriptionID'=>$detailID]);
+                $desc = $query->first();
+                array_push($detailArray,$desc->TradeDescriptionDetail);
+
+                $query = $this->TradesTable->find()->where([
+                    'TradeID' => $desc->TradeID]);
+                $trade = $query->first();
+                array_push($tradeArray,$trade->TradeName);
+
+                $query = $this->DefectPlacesTable->find()
+                ->where(['DefectPlaceID' => $placeID]);
+                $place = $query->first();
+                array_push($placeArray,$place->DefectPlaceName);
+
+            }
+        }
+        
         $this->set(['listDefectItem' => $listDefectItem,
                             '_serialize' => ['listDefectItem']
                         ]);
         $this->set('defectHeader', $defectHeader);
+        $this->set('tradeArray',$tradeArray);
+        $this->set('detailArray',$detailArray);
+        $this->set('placeArray',$placeArray);
+        $this->set('phase',$phase);
+        $this->set('block',$block);
+        $this->set('project',$project);
     }
 
     /**
