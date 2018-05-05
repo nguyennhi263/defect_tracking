@@ -40,7 +40,7 @@ class DefectHeadersTable extends Table
          $this->belongsTo('Units', [
             'foreignKey' => 'UnitID',
             'joinType' => 'INNER',
-            'propertyName' => 'UnitNo'
+            'propertyName' => 'UnitName'
         ]);
         $this->hasMany('DefectItems', [
             'foreignKey' => 'DefectID'

@@ -4,25 +4,14 @@
  * @var \App\Model\Entity\DefectHeader $defectHeader
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Defect Header'), ['action' => 'edit', $defectHeader->DefectID]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Defect Header'), ['action' => 'delete', $defectHeader->DefectID], ['confirm' => __('Are you sure you want to delete # {0}?', $defectHeader->DefectID)]) ?> </li>
-        <li><?= $this->Html->link(__('List Defect Headers'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Defect Header'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Units'), ['controller' => 'Units', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Unit'), ['controller' => 'Units', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Defect Items'), ['controller' => 'DefectItems', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Defect Item'), ['controller' => 'DefectItems', 'action' => 'add']) ?> </li>
-    </ul>
-</nav>
 <div class="defectHeaders view large-9 medium-8 columns content">
-    <h3><?= h($defectHeader->DefectID) ?></h3>
+    <h3><?= h($defectHeader->UnitName) ?></h3>
+    <h3><?= h($defectHeader->UnitName->unit_type->image) ?></h3>
+    <h3><?= h($defectHeader->UnitName->UnitName) ?></h3>
     <table class="vertical-table">
         <tr>
-            <th scope="row"><?= __('UnitNo') ?></th>
-            <td><?= $defectHeader->has('UnitNo') ? $this->Html->link($defectHeader->UnitNo->UnitID, ['controller' => 'Units', 'action' => 'view', $defectHeader->UnitNo->UnitID]) : '' ?></td>
+            <th scope="row"><?= __('UnitName') ?></th>
+            <td><?= $defectHeader->has('UnitName') ? $this->Html->link($defectHeader->UnitName->UnitName, ['controller' => 'Units', 'action' => 'view', $defectHeader->UnitName->UnitID]) : '' ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('DefectID') ?></th>
@@ -78,4 +67,15 @@
         </table>
         <?php endif; ?>
     </div>
+    <div class="content">
+            <div id="unit-map-container">
+                <div class="form-inline defect-place-saving hidden">
+                </div>
+                <div id="unit-type-map" class="unit-map" style="background-image:url(/defect_tracking/webroot/img/ArchirecturalDrawing/<?= $defectHeader->UnitName->unit_type->image ?>)">
+                <img src="/defect_tracking/webroot/img/ArchirecturalDrawing/<?=$defectHeader->UnitName->unit_type->image ?>" alt="CakePHP" />
+                </div>
+            </div>
 </div>
+<script type="text/javascript">
+    getDefectPlace(1);
+</script>

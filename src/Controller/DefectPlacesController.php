@@ -41,7 +41,9 @@ class DefectPlacesController extends AppController
         $defectPlace = $this->DefectPlaces->get($id, [
             'contain' => ['UnitTypes']
         ]);
-
+        $this->set(['defectPlace' => $defectPlace,
+                    '_serialize' => ['defectPlace']
+                ]);
         $this->set('defectPlace', $defectPlace);
     }
 
