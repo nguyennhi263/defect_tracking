@@ -40,7 +40,9 @@ class TradeDescriptionsController extends AppController
         $tradeDescription = $this->TradeDescriptions->get($id, [
             'contain' => ['Trades']
         ]);
-
+        $this->set(['tradeDescription' => $tradeDescription,
+                                    '_serialize' => ['tradeDescription']
+                                ]);
         $this->set('tradeDescription', $tradeDescription);
     }
 

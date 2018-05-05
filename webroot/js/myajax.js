@@ -39,8 +39,7 @@ function getListDefectPlace($id) {
 /*
   get trade description
 */
-function getDefectItem_Place($TradeID){
-  var map = $("#unit-map-container .unit-map");
+function getTradeDescription($TradeID){
   $.ajax({
         dataType: "html",
         method: "GET",
@@ -51,8 +50,7 @@ function getDefectItem_Place($TradeID){
            data = jQuery.parseJSON(data);
            $.each(data,function(i,listDefectPlace){
                 $.each(listDefectPlace,function(j,defectplaces){
-                     render_unit_places(map, defectplaces.coordX, defectplaces.coordY, $Trade);
-                    //console.log(defectplaces.DefectPlaceName);
+                     return data;
                 });
             
             });

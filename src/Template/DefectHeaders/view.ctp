@@ -77,5 +77,6 @@
             </div>
 </div>
 <script type="text/javascript">
-    getDefectPlace(1);
+    //getDefectPlace(1);
+    getTradeDescription(1);
 </script>
