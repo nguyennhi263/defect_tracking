@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 05, 2018 at 12:39 PM
+-- Generation Time: May 06, 2018 at 08:52 AM
 -- Server version: 5.7.19
 -- PHP Version: 7.0.23
 
@@ -212,7 +212,7 @@ CREATE TABLE IF NOT EXISTS `projects` (
   `ProjectID` int(10) NOT NULL AUTO_INCREMENT,
   `ProjectName` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`ProjectID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `projects`
@@ -220,7 +220,8 @@ CREATE TABLE IF NOT EXISTS `projects` (
 
 INSERT INTO `projects` (`ProjectID`, `ProjectName`) VALUES
 (4, 'test'),
-(5, 'Fuji Residence');
+(5, 'Fuji Residence'),
+(6, 'vinhomes');
 
 -- --------------------------------------------------------
 
@@ -304,14 +305,15 @@ CREATE TABLE IF NOT EXISTS `units` (
   `UnitName` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `UnitFloor` int(11) NOT NULL,
   PRIMARY KEY (`UnitID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `units`
 --
 
 INSERT INTO `units` (`UnitID`, `BlockID`, `UnitTypeID`, `UnitName`, `UnitFloor`) VALUES
-(1, 1, 1, 'A-1.01', 1);
+(1, 1, 1, 'A-1.01', 1),
+(2, 1, 1, 'A-2.01', 2);
 
 -- --------------------------------------------------------
 
