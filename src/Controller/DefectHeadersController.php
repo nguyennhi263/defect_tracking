@@ -45,7 +45,7 @@ class DefectHeadersController extends AppController
         $defectItemsClose = $query->toArray();
         $this->set(compact('defectItemsClose'));
     }
-    public function list()
+    public function list_header()
     {
         $this->paginate = [
             'contain' => ['Units']
