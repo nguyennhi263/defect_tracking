@@ -15,9 +15,9 @@ function render_unit_places($map, pointX, pointY, place_name, place_id){
   set unit places to map without delete button (defect header view)
 */ 
 function render_unit_places_defect_header($map, pointX, pointY, place_name, place_id){
-    html = '<div class="unit-place" style="top:'+pointY+'px; left:'+pointX+'px;">';
+    html = '<div class="unit-place1" style="top:'+pointY+'px; left:'+pointX+'px; ">';
     html +='<img src="/defect_tracking/webroot/img/point.gif" >';
-    html += '<div class="place-info"><span class="place-name">'+place_name+'</span>';
+    html += '<div class="place-info1"><span class="place-name1">'+place_name+'</span>';
     html += '</div></div>';
     $map.append(html);
 }
