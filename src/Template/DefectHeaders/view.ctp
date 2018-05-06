@@ -24,6 +24,7 @@
                 <th scope="col"><?= __('Trade') ?></th>
                 <th scope="col"><?= __('Description') ?></th>
                 <th scope="col"><?= __('Place') ?></th>
+                <th scope="col"><?= __('Image') ?></th>
                 <th scope="col"><?= __('CloseDate') ?></th>
                 <th scope="col"><?= __('Status') ?></th>
                 <th scope="col"><?= __('Note') ?></th>
@@ -32,10 +33,15 @@
             </tr>
             <?php $i = 0; ?>
             <?php foreach ($defectHeader->defect_items as $defectItems): ?>
-            <tr class="show-image-on-hover">
+            <tr>
                 <td><?= h($tradeArray[$i]) ?></td>
                 <td><?= h($detailArray[$i]) ?></td>
                 <td><?= h($placeArray[$i]) ?></td>
+                <td>
+                <div class="defect-thumbnail" style="background-image:url('/defect_tracking/webroot/img/DefectItem/20180501_124348.jpg')">
+                <img class="defect-image" src="/defect_tracking/webroot/img/DefectItem/20180501_124348.jpg" alt="ImgBefore" >
+                </div>
+                </td>
                 <td><?= h($defectItems->CloseDate) ?></td>
                 <td><?= h($defectItems->DefectStatus) ?></td>
                 <td><?= h($defectItems->Note) ?></td>
@@ -45,7 +51,6 @@
                     <?= $this->Html->link(__('Edit'), ['controller' => 'DefectItems', 'action' => 'edit', $defectItems->DefectItemID]) ?>
                     <?= $this->Form->postLink(__('Delete'), ['controller' => 'DefectItems', 'action' => 'delete', $defectItems->DefectItemID], ['confirm' => __('Are you sure you want to delete # {0}?', $defectItems->DefectItemID)]) ?>
                 </td>
-                <div class="hidden defect-image " style="background-image: url('/defect_tracking/webroot/img/DefectItem/20180501_124348.jpg')"> <img src="/defect_tracking/webroot/img/DefectItem/20180501_124348.jpg" alt="ImgBefore" ></div>
             </tr>
 
             <?php $i++; endforeach; ?>

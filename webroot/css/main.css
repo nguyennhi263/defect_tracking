@@ -1,5 +1,7 @@
 @import url("font-awesome.min.css");
 
+.hidden {display: none;}
+
 /******************
 * Unit map
 *****************/
@@ -65,3 +67,17 @@
     text-align: left;
 }
 
+/***********
+Defect
+***********/
+.defect-thumbnail {
+    width: 50px; height: 50px; position: relative;
+    background-position: center; background-size: cover;
+}
+img.defect-image {
+    position:absolute; top:50%; left:120%; z-index: 1; opacity: 0; visibility: hidden;
+    transform:translateY(-50%);
+    transition:all .3s ease;
+    width:auto; height: 500px; border-radius:3px; border:3px solid #363636;
+}
+.defect-thumbnail:hover .defect-image {opacity:1; visibility: visible; left:110%;}
