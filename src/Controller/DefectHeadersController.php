@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+use Cake\I18n\Date;
 /**
  * DefectHeaders Controller
  *
@@ -20,6 +20,33 @@ class DefectHeadersController extends AppController
      */
     public function index()
     {
+        /*
+            ** Get total defect open
+        */
+        $query = $this->DefectItemsTable
+                    ->find()
+                    ->where(['DefectStatus'=>'open']);
+        $defectItems = $query->toArray();
+        $this->set(compact('defectItems'));
+        /*
+            ** Get total defect open today
+        */
+        $query = $this->DefectItemsTable
+                    ->find()
+                    ->where(['DefectStatus'=>'open','created '=>new Date()]);
+        $defectItemsToday = $query->toArray();
+        $this->set(compact('defectItemsToday'));
+        /*
+            ** Get total defect close today
+        */
+        $query = $this->DefectItemsTable
+                    ->find()
+                    ->where(['DefectStatus'=>'close','created '=>new Date()]);
+        $defectItemsClose = $query->toArray();
+        $this->set(compact('defectItemsClose'));
+    }
+    public function list()
+    {
         $this->paginate = [
             'contain' => ['Units']
         ];
@@ -27,7 +54,6 @@ class DefectHeadersController extends AppController
 
         $this->set(compact('defectHeaders'));
     }
-
     /**
      * View method
      *

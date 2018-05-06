@@ -4,21 +4,6 @@
  * @var \App\Model\Entity\Block $block
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Block'), ['action' => 'edit', $block->BlockID]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Block'), ['action' => 'delete', $block->BlockID], ['confirm' => __('Are you sure you want to delete # {0}?', $block->BlockID)]) ?> </li>
-        <li><?= $this->Html->link(__('List Blocks'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Block'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Phases'), ['controller' => 'Phases', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Phase'), ['controller' => 'Phases', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Contractors'), ['controller' => 'Contractors', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Contractor'), ['controller' => 'Contractors', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Units'), ['controller' => 'Units', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Unit'), ['controller' => 'Units', 'action' => 'add']) ?> </li>
-    </ul>
-</nav>
 <div class="blocks view large-9 medium-8 columns content">
     <h3><?= h($block->BlockName) ?></h3>
     <table class="vertical-table">
@@ -33,10 +18,6 @@
         <tr>
             <th scope="row"><?= __('Contractor') ?></th>
             <td><?= $block->has('contractor') ? $this->Html->link($block->contractor->ContractorName, ['controller' => 'Contractors', 'action' => 'view', $block->contractor->ContractorID]) : '' ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('BlockID') ?></th>
-            <td><?= $this->Number->format($block->BlockID) ?></td>
         </tr>
     </table>
     <div class="related">
@@ -68,4 +49,27 @@
         </table>
         <?php endif; ?>
     </div>
+    <!-- contend block -->
+    <?php if (!empty($block->units)): ?>
+    <?php $level=(int) ($block->units[0]['UnitFloor']); ?>
+    <div class="row">
+            <?php foreach ($block->units as $units): ?>
+            <div class="col-sm-2 col-lg-2" style="background-color:lavender;">Level <?= $level ?></div>
+            
+                        <!-- contend units -->
+            <div class="col-sm-10 col-lg-10" style="background-color:lavenderblush;"> 
+                <div class="row">
+                    <?php if ($units->UnitFloor == (int)($level)): ?>
+                    <!-- contend one units -->
+                    <div class="col-sm-2">
+                       <?= ($units->UnitName) ?>
+                    </div>
+                </div>
+            </div>
+            <?php       else : $level++; ?>
+            
+            <?php            endif; ?>
+        <?php endforeach; ?>
+    </div>
+    <?php endif; ?>
 </div>

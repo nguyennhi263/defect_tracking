@@ -4,18 +4,10 @@
  * @var \App\Model\Entity\Project[]|\Cake\Collection\CollectionInterface $projects
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Project'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Phases'), ['controller' => 'Phases', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Phase'), ['controller' => 'Phases', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
 <div class="projects index large-9 medium-8 columns content">
     <h3><?= __('Projects') ?></h3>
-    <table cellpadding="0" cellspacing="0">
-        <thead>
+    <table cellpadding="0" cellspacing="0" class="table table-secondary table-striped table-hover">
+        <thead class="thead-dark">
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('ProjectID') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('ProjectName') ?></th>

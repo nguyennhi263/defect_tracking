@@ -13,7 +13,7 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
-$cakeDescription = 'CakePHP: the rapid development php framework';
+$cakeDescription = 'Defect Tracking';
 ?>
 <!DOCTYPE html>
 <html>
@@ -80,7 +80,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 </nav>
 <br>
     <?= $this->Flash->render() ?>
-    <div class="container clearfix jumbotron">
+    <div class="container clearfix container-fluid">
         <?= $this->fetch('content') ?>
     </div>
     <footer>
