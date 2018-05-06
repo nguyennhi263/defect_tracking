@@ -42,6 +42,36 @@ class BlocksController extends AppController
         ]);
 
         $this->set('block', $block);
+        /*
+            ** Get List Floor
+        */
+        $floorArray=[];
+        
+        $listUnits = $block->units;
+        if (!empty($listUnits)){
+            $i = $listUnits[0]['UnitFloor'];
+             $floorArray[$i]=[];
+            foreach ($listUnits as $unit){
+                /*
+                    get next floor
+                */
+                if ($unit->UnitFloor > (int) ($i)){
+                    $i++;
+                    //array_push($floorArray,$i);
+                    $floorArray[$i]=[];
+                }
+            }
+        }
+        if (!empty($listUnits)){
+            $i = 0;
+            foreach ($listUnits as $unit){
+                /*
+                    get next floor
+                */
+                array_push($floorArray[$unit->UnitFloor],$unit);
+            }
+        }
+        $this->set(compact('floorArray'));
     }
 
     /**

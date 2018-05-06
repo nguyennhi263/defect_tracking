@@ -78,9 +78,9 @@ $cakeDescription = 'Defect Tracking';
     </li>
   </ul>
 </nav>
-<br>
+
     <?= $this->Flash->render() ?>
-    <div class="container clearfix container-fluid">
+    <div class="container-fluid">
         <?= $this->fetch('content') ?>
     </div>
     <footer>
