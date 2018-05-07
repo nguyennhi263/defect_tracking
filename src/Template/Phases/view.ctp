@@ -36,7 +36,7 @@
                     <?php endforeach; endif;?>
                     <a href="/defect_tracking/blocks/add/"  class="btn btn-primary btn-dark" role="button">
                 <i class="fa fa-plus-circle" aria-hidden="true"> Add Block</i> 
-            </a>
+                 </a>
                  </div>
             <?php endforeach; endif;?>
             <a href="/defect_tracking/phases/add/"  class="btn btn-primary btn-dark " role="button">

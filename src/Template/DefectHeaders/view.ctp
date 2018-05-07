@@ -67,7 +67,5 @@
             </div>
 </div>
 <script type="text/javascript">
-    //getTradeDescription(1);
-   getDefectItems(1);
-    //getDefectItems();
+   getDefectItems(<?=$defectHeader->DefectID ?>);
 </script>

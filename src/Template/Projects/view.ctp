@@ -12,6 +12,7 @@
     <?php foreach ($listProject as $project): ?>
     <?php if ($project->ProjectID == $projectCur->ProjectID):?>
         <!-- Project Level-->
+    
     <a href="/defect_tracking/projects/view/<?= $project->ProjectID?>"  class="btn btn-primary btn-dark active" role="button"> 
         <i class="fa fa-briefcase" aria-hidden="true"> <?= $project->ProjectName?> </i> 
      </a>
@@ -29,10 +30,13 @@
             <div class="btn-group-vertical">
             <?php if(!empty($project->phases)):?>
             <?php foreach ($project->phases as $phases): ?>
-                <a href="/defect_tracking/phases/view/<?=$phases->PhaseID?>" class="btn btn-primary btn-dark " role="button"> 
-                <i class="fa fa-life-ring aria-hidden="true"> <?= $phases->PhaseName ?> </i> 
-                </a>
-              <i class="fa fa-chevron-down" aria-hidden="true" data-toggle="collapse" data-target="#phase-<?= $phases->PhaseID ?>"></i>
+                <button type="button" class="btn btn-dark">
+                    <a href="/defect_tracking/phases/view/<?=$phases->PhaseID?>" class="btn btn-primary btn-dark " role="button"> 
+                    <i class="fa fa-life-ring aria-hidden="true"> <?= $phases->PhaseName ?> </i> 
+                    </a>
+                    <!-- ii-->
+                     <i class="fa fa-chevron-down" aria-hidden="true" data-toggle="collapse" data-target="#phase-<?= $phases->PhaseID ?>"></i>
+                </button>
                     <!-- Block Level -->
                     <div id="phase-<?=$phases->PhaseID ?>" class="collapse">
                     <?php if(!empty($phases->blocks[0])): ?>
@@ -46,10 +50,13 @@
             </a>
                  </div>
             <?php endforeach; endif;?>
-            <a href="/defect_tracking/phases/add/"  class="btn btn-primary btn-dark " role="button">
-                <i class="fa fa-plus-circle" aria-hidden="true"> Add Phase</i> 
-            </a>
+             <button type="button" class="btn btn-dark">
+                    <a href="/defect_tracking/phases/view/<?=$phases->PhaseID?>" class="btn btn-primary btn-dark " role="button"> 
+                    <i class="fa fa-plus-circle aria-hidden="true">Add Phase </i> 
+                    </a>
+                </button>
             </div>
+
       </div>
   <?php endforeach; ?>
 </div>

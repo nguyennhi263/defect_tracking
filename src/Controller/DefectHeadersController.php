@@ -18,11 +18,85 @@ class DefectHeadersController extends AppController
         parent::initialize();
         $this->loadComponent('RequestHandler');
     }
-    /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|void
-     */
+    public function block($id = null)
+    {
+        if ($id == null){
+            $id = $this->BlocksTable->find('all')->first()->BlockID;
+        }
+        $blockCur = $this->BlocksTable->get($id, [
+            'contain' => ['Phases', 'Contractors', 'Units']
+        ]);
+
+        $this->set('blockCur', $blockCur);
+        /*
+            ** Get List Floor
+        */
+        $floorArray=[];
+        
+        $listUnits = $blockCur->units;
+        if (!empty($listUnits)){
+            $i = $listUnits[0]['UnitFloor'];
+             $floorArray[$i]=[];
+            foreach ($listUnits as $unit){
+                /*
+                    get next floor
+                */
+                if ($unit->UnitFloor > (int) ($i)){
+                    $i++;
+                    //array_push($floorArray,$i);
+                    $floorArray[$i]=[];
+                }
+            }
+        }
+        if (!empty($listUnits)){
+            $i = 0;
+            foreach ($listUnits as $unit){
+                /*
+                    get next floor
+                */
+                array_push($floorArray[$unit->UnitFloor],$unit);
+            }
+        }
+        $this->set(compact('floorArray'));
+
+        /**
+            render chart
+        */
+        // get phase
+        $listProject = $this->ProjectsTable->find('all')->contain(['Phases'])->toArray();
+       // $projectArray = $listProject;
+        if (!empty($listProject)){
+
+            foreach ($listProject as $projectKey => $project ){
+
+                if (!empty($project->phases)){
+                    foreach ($project->phases as $phaseKey => $phase) {
+                        $blocks = $this->BlocksTable->find('all')->where(['PhaseID'=>$phase->PhaseID])->toArray();
+                        if (!empty($blocks)){
+                            $listProject[$projectKey]->phases[$phaseKey]->blocks= [];
+                            array_push($listProject[$projectKey]->phases[$phaseKey]->blocks, $blocks);
+                        }
+                    }
+                }
+            }
+        }
+        $this->set('listProject', $listProject); 
+    }
+    public function new($id = null ){
+        // get unit info
+        $unit = $this->UnitsTable->get($id, [
+            'contain' => ['Blocks', 'UnitTypes']
+        ]);
+        $this->set('unit', $unit);
+        // get list trade
+        $trades = $this->TradesTable->find('list',['limit'=>200],
+                ['contain'=>['TradeDescriptions']]);
+        $trade = $this->TradesTable->find('all',['limit'=>200,'contain'=>['TradeDescriptions']]);
+        $defectPlaces = $this->DefectItemsTable->DefectPlaces->find('list', ['limit' => 200]);
+        $tradeDescriptions = $this->TradeDescriptionsTable->find('list',['limit'=>200])->where(['TradeID'=> $trade->first()->TradeID]);
+        
+        $this->set(compact('trades', 'defectPlaces', 'tradeDescriptions'));
+    }
     public function index()
     {
         /*
