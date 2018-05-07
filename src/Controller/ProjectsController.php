@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+use Cake\Controller\Component\RequestHandlerComponent;
 /**
  * Projects Controller
  *
@@ -12,12 +12,12 @@ use App\Controller\AppController;
  */
 class ProjectsController extends AppController
 {
-
-    /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|void
-     */
+    public function initialize()
+    {
+            parent::initialize();
+            $this->loadComponent('RequestHandler');
+    }
+    
     public function index()
     {
         $projects = $this->paginate($this->Projects);
@@ -25,27 +25,40 @@ class ProjectsController extends AppController
         $this->set(compact('projects'));
     }
 
-    /**
-     * View method
-     *
-     * @param string|null $id Project id.
-     * @return \Cake\Http\Response|void
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
     public function view($id = null)
     {
         $project = $this->Projects->get($id, [
             'contain' => ['Phases']
         ]);
+        
+        
+        $this->set('projectCur', $project);
+       
+        /**
+            render chart
+        */
+        // get phase
+        $listProject = $this->Projects->find('all')->contain(['Phases'])->toArray();
+       // $projectArray = $listProject;
+        if (!empty($listProject)){
 
-        $this->set('project', $project);
+            foreach ($listProject as $projectKey => $project ){
+
+                if (!empty($project->phases)){
+                    foreach ($project->phases as $phaseKey => $phase) {
+                        $blocks = $this->BlocksTable->find('all')->where(['PhaseID'=>$phase->PhaseID])->toArray();
+                        if (!empty($blocks)){
+                            $listProject[$projectKey]->phases[$phaseKey]->blocks= [];
+                            array_push($listProject[$projectKey]->phases[$phaseKey]->blocks, $blocks);
+                        }
+                    }
+                }
+            }
+        }
+        $this->set('listProject', $listProject); 
     }
 
-    /**
-     * Add method
-     *
-     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
-     */
+  
     public function add()
     {
         $project = $this->Projects->newEntity();
@@ -62,13 +75,7 @@ class ProjectsController extends AppController
         $this->set(compact('project'));
     }
 
-    /**
-     * Edit method
-     *
-     * @param string|null $id Project id.
-     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
-     */
+  
     public function edit($id = null)
     {
         $project = $this->Projects->get($id, [
@@ -86,13 +93,7 @@ class ProjectsController extends AppController
         $this->set(compact('project'));
     }
 
-    /**
-     * Delete method
-     *
-     * @param string|null $id Project id.
-     * @return \Cake\Http\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
+   
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
@@ -104,5 +105,27 @@ class ProjectsController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+    public function getDefectHeader($id = null){
+        $this->autoRender = false;
+        // get phase
+        $phases = $this->PhasesTable->find('all')->contain(['Blocks'])->where(['ProjectID'=>$id])->toArray();
+        //get blocks
+        $blockArray = [];
+        foreach ($phases as  $phase) {
+            foreach ($phase->blocks as $block) {
+                array_push($blockArray,$block->BlockID); 
+            }
+        }
+        // get Units
+        $units = $this->UnitsTable->find('all')->where(['BlockID in '=>$blockArray])->toArray();
+        $unitArray = [];
+        foreach ($units as $unit) {
+            array_push($unitArray, $unit->UnitID);
+        }
+       return $unitArray;
+        //get Defect Headers
+        $defectHeaderArray = $this->DefectHeadersTables->find('all')->where(['UnitID in' => $unitArray])->toArray();
+        
     }
 }

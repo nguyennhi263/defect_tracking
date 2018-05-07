@@ -12,7 +12,11 @@ use App\Controller\AppController;
  */
 class BlocksController extends AppController
 {
-
+    public function initialize()
+        {
+            parent::initialize();
+            $this->loadComponent('RequestHandler');
+        }
     /**
      * Index method
      *
@@ -37,17 +41,17 @@ class BlocksController extends AppController
      */
     public function view($id = null)
     {
-        $block = $this->Blocks->get($id, [
+        $blockCur = $this->Blocks->get($id, [
             'contain' => ['Phases', 'Contractors', 'Units']
         ]);
 
-        $this->set('block', $block);
+        $this->set('blockCur', $blockCur);
         /*
             ** Get List Floor
         */
         $floorArray=[];
         
-        $listUnits = $block->units;
+        $listUnits = $blockCur->units;
         if (!empty($listUnits)){
             $i = $listUnits[0]['UnitFloor'];
              $floorArray[$i]=[];
@@ -72,6 +76,29 @@ class BlocksController extends AppController
             }
         }
         $this->set(compact('floorArray'));
+
+        /**
+            render chart
+        */
+        // get phase
+        $listProject = $this->ProjectsTable->find('all')->contain(['Phases'])->toArray();
+       // $projectArray = $listProject;
+        if (!empty($listProject)){
+
+            foreach ($listProject as $projectKey => $project ){
+
+                if (!empty($project->phases)){
+                    foreach ($project->phases as $phaseKey => $phase) {
+                        $blocks = $this->BlocksTable->find('all')->where(['PhaseID'=>$phase->PhaseID])->toArray();
+                        if (!empty($blocks)){
+                            $listProject[$projectKey]->phases[$phaseKey]->blocks= [];
+                            array_push($listProject[$projectKey]->phases[$phaseKey]->blocks, $blocks);
+                        }
+                    }
+                }
+            }
+        }
+        $this->set('listProject', $listProject); 
     }
 
     /**

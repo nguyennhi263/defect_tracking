@@ -42,6 +42,29 @@ class PhasesController extends AppController
         ]);
 
         $this->set('phase', $phase);
+
+        /**
+            render chart
+        */
+        // get phase
+        $listProject = $this->ProjectsTable->find('all')->contain(['Phases'])->toArray();
+       // $projectArray = $listProject;
+        if (!empty($listProject)){
+
+            foreach ($listProject as $projectKey => $project ){
+
+                if (!empty($project->phases)){
+                    foreach ($project->phases as $phaseKey => $phase) {
+                        $blocks = $this->BlocksTable->find('all')->where(['PhaseID'=>$phase->PhaseID])->toArray();
+                        if (!empty($blocks)){
+                            $listProject[$projectKey]->phases[$phaseKey]->blocks= [];
+                            array_push($listProject[$projectKey]->phases[$phaseKey]->blocks, $blocks);
+                        }
+                    }
+                }
+            }
+        }
+        $this->set('listProject', $listProject); 
     }
 
     /**

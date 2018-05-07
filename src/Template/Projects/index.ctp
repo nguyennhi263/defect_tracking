@@ -10,7 +10,7 @@
     <div class="btn-group-vertical btn-block">
         <button type="button" class="btn btn-block btn-dark active">List Project</button>
       <button type="button" class="btn btn-block btn-dark"><i class="fas fa-plus-circle"></i> Create New Project</button>
-      <button type="button" class="btn btn-block btn-dark">Sony</button>
+      <button type="button" class="btn btn-block btn-dark">Contractor</button>
     </div>
 </div>
 <div class="projects  col-lg-10  col-md-8 content">

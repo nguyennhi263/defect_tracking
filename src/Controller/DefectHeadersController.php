@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\I18n\Date;
+use Cake\Controller\Component\RequestHandlerComponent ;
 /**
  * DefectHeaders Controller
  *
@@ -12,7 +13,11 @@ use Cake\I18n\Date;
  */
 class DefectHeadersController extends AppController
 {
-
+    public function initialize()
+    {
+        parent::initialize();
+        $this->loadComponent('RequestHandler');
+    }
     /**
      * Index method
      *
@@ -170,23 +175,16 @@ class DefectHeadersController extends AppController
         $this->set(compact('defectHeader', 'units'));
     }
 
-    /**
-     * Delete method
-     *
-     * @param string|null $id Defect Header id.
-     * @return \Cake\Http\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
         $defectHeader = $this->DefectHeaders->get($id);
         if ($this->DefectHeaders->delete($defectHeader)) {
-            $this->Flash->success(__('The defect header has been deleted.'));
-        } else {
-            $this->Flash->error(__('The defect header could not be deleted. Please, try again.'));
+            $this->Flash->success(__('Delete successful.'));
         }
-
+        else{
+        $this->Flash->error(__('The defect header could not be deleted. Please, try again.'));
+        }
         return $this->redirect(['action' => 'index']);
     }
 }

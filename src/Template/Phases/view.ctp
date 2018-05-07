@@ -4,19 +4,49 @@
  * @var \App\Model\Entity\Phase $phase
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Phase'), ['action' => 'edit', $phase->PhaseID]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Phase'), ['action' => 'delete', $phase->PhaseID], ['confirm' => __('Are you sure you want to delete # {0}?', $phase->PhaseID)]) ?> </li>
-        <li><?= $this->Html->link(__('List Phases'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Phase'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Projects'), ['controller' => 'Projects', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Project'), ['controller' => 'Projects', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Blocks'), ['controller' => 'Blocks', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Block'), ['controller' => 'Blocks', 'action' => 'add']) ?> </li>
-    </ul>
-</nav>
+
+<!--Left Menu -->
+<div class="row">
+<div class="col-lg-2  col-md-3  bg-dark">
+    <!-- one project collapse -->
+    <?php foreach ($listProject as $project): ?>
+   
+    <a href="/defect_tracking/projects/view/<?= $project->ProjectID?>"  class="btn btn-primary btn-dark " role="button"> 
+        <i class="fa fa-briefcase" aria-hidden="true"> <?= $project->ProjectName?> </i> 
+     </a>
+      
+      <i class="fa fa-chevron-down" aria-hidden="true" data-toggle="collapse" data-target="#project-<?=$project->ProjectID?>"></i>
+    
+        <!-- Phase Level-->
+      <div id="project-<?=$project->ProjectID ?>" class="collapse">
+            <div class="btn-group-vertical">
+            <?php if(!empty($project->phases)):?>
+            <?php foreach ($project->phases as $phases): ?>
+                <a href="/defect_tracking/phases/view/<?=$phases->PhaseID?>" class="btn btn-primary btn-dark " role="button"> 
+                <i class="fa fa-life-ring aria-hidden="true"> <?= $phases->PhaseName ?> </i> 
+                </a>
+              <i class="fa fa-chevron-down" aria-hidden="true" data-toggle="collapse" data-target="#phase-<?= $phases->PhaseID ?>"></i>
+                    <!-- Block Level -->
+                    <div id="phase-<?=$phases->PhaseID ?>" class="collapse">
+                    <?php if(!empty($phases->blocks[0])): ?>
+                        <?php foreach ($phases->blocks[0] as $block): ?>
+                            <a href="/defect_tracking/blocks/view/<?=$block->BlockID?>"  class="btn btn-dark" role="button"> 
+                             <i class="fa fa-sun-o" aria-hidden="true"> <?= $block->BlockName ?> </i> 
+                         </a>
+                    <?php endforeach; endif;?>
+                    <a href="/defect_tracking/blocks/add/"  class="btn btn-primary btn-dark" role="button">
+                <i class="fa fa-plus-circle" aria-hidden="true"> Add Block</i> 
+            </a>
+                 </div>
+            <?php endforeach; endif;?>
+            <a href="/defect_tracking/phases/add/"  class="btn btn-primary btn-dark " role="button">
+                <i class="fa fa-plus-circle" aria-hidden="true"> Add Phase</i> 
+            </a>
+            </div>
+      </div>
+  <?php endforeach; ?>
+</div>
+<!-- contain-->
 <div class="phases view large-9 medium-8 columns content">
     <h3><?= h($phase->PhaseName) ?></h3>
     <table class="vertical-table">
@@ -58,4 +88,5 @@
         </table>
         <?php endif; ?>
     </div>
+</div>
 </div>

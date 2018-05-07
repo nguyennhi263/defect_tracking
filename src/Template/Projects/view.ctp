@@ -4,32 +4,70 @@
  * @var \App\Model\Entity\Project $project
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Project'), ['action' => 'edit', $project->ProjectID]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Project'), ['action' => 'delete', $project->ProjectID], ['confirm' => __('Are you sure you want to delete # {0}?', $project->ProjectID)]) ?> </li>
-        <li><?= $this->Html->link(__('List Projects'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Project'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Phases'), ['controller' => 'Phases', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Phase'), ['controller' => 'Phases', 'action' => 'add']) ?> </li>
-    </ul>
-</nav>
-<div class="projects view large-9 medium-8 columns content">
-    <h3><?= h($project->ProjectName) ?></h3>
+
+<!--Left Menu -->
+<div class="row">
+<div class="col-lg-2  col-md-3  bg-dark">
+    <!-- one project collapse -->
+    <?php foreach ($listProject as $project): ?>
+    <?php if ($project->ProjectID == $projectCur->ProjectID):?>
+        <!-- Project Level-->
+    <a href="/defect_tracking/projects/view/<?= $project->ProjectID?>"  class="btn btn-primary btn-dark active" role="button"> 
+        <i class="fa fa-briefcase" aria-hidden="true"> <?= $project->ProjectName?> </i> 
+     </a>
+      
+      <i class="fa fa-chevron-down" aria-hidden="true" data-toggle="collapse" data-target="#project-<?=$project->ProjectID?>"></i>
+    <?php else:?>
+    <a href="/defect_tracking/projects/view/<?= $project->ProjectID?>"  class="btn btn-primary btn-dark " role="button"> 
+        <i class="fa fa-briefcase" aria-hidden="true"> <?= $project->ProjectName?> </i> 
+     </a>
+      
+      <i class="fa fa-chevron-down" aria-hidden="true" data-toggle="collapse" data-target="#project-<?=$project->ProjectID?>"></i>
+    <?php endif;?>
+        <!-- Phase Level-->
+      <div id="project-<?=$project->ProjectID ?>" class="collapse">
+            <div class="btn-group-vertical">
+            <?php if(!empty($project->phases)):?>
+            <?php foreach ($project->phases as $phases): ?>
+                <a href="/defect_tracking/phases/view/<?=$phases->PhaseID?>" class="btn btn-primary btn-dark " role="button"> 
+                <i class="fa fa-life-ring aria-hidden="true"> <?= $phases->PhaseName ?> </i> 
+                </a>
+              <i class="fa fa-chevron-down" aria-hidden="true" data-toggle="collapse" data-target="#phase-<?= $phases->PhaseID ?>"></i>
+                    <!-- Block Level -->
+                    <div id="phase-<?=$phases->PhaseID ?>" class="collapse">
+                    <?php if(!empty($phases->blocks[0])): ?>
+                        <?php foreach ($phases->blocks[0] as $block): ?>
+                            <a href="/defect_tracking/blocks/view/<?=$block->BlockID?>"  class="btn btn-dark" role="button"> 
+                             <i class="fa fa-sun-o" aria-hidden="true"> <?= $block->BlockName ?> </i> 
+                         </a>
+                    <?php endforeach; endif;?>
+                    <a href="/defect_tracking/blocks/add/"  class="btn btn-primary btn-dark" role="button">
+                <i class="fa fa-plus-circle" aria-hidden="true"> Add Block</i> 
+            </a>
+                 </div>
+            <?php endforeach; endif;?>
+            <a href="/defect_tracking/phases/add/"  class="btn btn-primary btn-dark " role="button">
+                <i class="fa fa-plus-circle" aria-hidden="true"> Add Phase</i> 
+            </a>
+            </div>
+      </div>
+  <?php endforeach; ?>
+</div>
+<div class="projects view col-lg-10 col-md-8 content">
+    <h3><?= h($projectCur->ProjectName) ?></h3>
     <table class="vertical-table">
         <tr>
             <th scope="row"><?= __('ProjectName') ?></th>
-            <td><?= h($project->ProjectName) ?></td>
+            <td><?= h($projectCur->ProjectName) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('ProjectID') ?></th>
-            <td><?= $this->Number->format($project->ProjectID) ?></td>
+            <td><?= $this->Number->format($projectCur->ProjectID) ?></td>
         </tr>
     </table>
     <div class="related">
         <h4><?= __('Related Phases') ?></h4>
-        <?php if (!empty($project->phases)): ?>
+        <?php if (!empty($projectCur->phases)): ?>
         <table cellpadding="0" cellspacing="0">
             <tr>
                 <th scope="col"><?= __('PhaseID') ?></th>
@@ -37,7 +75,7 @@
                 <th scope="col"><?= __('ProjectID') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
-            <?php foreach ($project->phases as $phases): ?>
+            <?php foreach ($projectCur->phases as $phases): ?>
             <tr>
                 <td><?= h($phases->PhaseID) ?></td>
                 <td><?= h($phases->PhaseName) ?></td>
@@ -52,4 +90,5 @@
         </table>
         <?php endif; ?>
     </div>
+</div>
 </div>
