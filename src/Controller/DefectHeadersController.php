@@ -5,14 +5,26 @@ use App\Controller\AppController;
 use Cake\I18n\Date;
 use Cake\Controller\Component\RequestHandlerComponent ;
 use Cake\Http\Exception\NotFoundException;
-
+use Cake\Event\Event;
 class DefectHeadersController extends AppController
 {
+
     public function initialize()
     {
         parent::initialize();
         $this->loadComponent('RequestHandler');
     }
+    public function isAuthorized($user)
+    {
+        parent::isAuthorized($user);
+        return true;
+    }
+    public function beforeFilter(Event $event)
+    {   
+        parent::beforeFilter($event);
+        $this->Auth->allow();   
+    }
+
     public function insert(){
         if ($this->request->is('get')) {
         $test = $this->request->getData('DefectItemNote');
@@ -129,8 +141,8 @@ class DefectHeadersController extends AppController
         $this->paginate = [
             'contain' => ['Units']
         ];
-        $defectHeaders = $this->paginate($this->DefectHeaders);
 
+        $defectHeaders = $this->paginate($this->DefectHeaders);
         $this->set(compact('defectHeaders'));
     }
     public function listHeader()

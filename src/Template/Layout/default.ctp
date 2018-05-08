@@ -49,11 +49,11 @@ $cakeDescription = 'Defect Tracking';
 
 </head>
 <body>
-  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <nav class="navbar  navbar-expand-sm bg-dark navbar-dark">
   <!-- Brand -->
   <a class="navbar-brand" href="#"><img src="/defect_tracking/webroot/img/cake-logo.png" alt="Logo" style="width:40px;">Defect Tracking</a>
   <!-- Links -->
-  <ul class="navbar-nav">
+  <ul class="navbar-nav justify-content-center">
     <li class="nav-item">
      
       <?= $this->Html->link(__('Defect Management'), ['controller' => 'DefectHeaders', 'action' => 'index'],['class'=>'nav-link']) ?>
@@ -65,18 +65,22 @@ $cakeDescription = 'Defect Tracking';
       <?= $this->Html->link(__('Trade Management'), ['controller' => 'Trades', 'action' => 'index'],['class'=>'nav-link']) ?>
     </li>
 
-    <!-- Dropdown -->
-    <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-        Report
-      </a>
-      <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">Defect Management</a>
-        <a class="dropdown-item" href="#">Project Management</a>
-        <a class="dropdown-item" href="#">Report</a>
-      </div>
+    <!-- User -->
+    <?php if (!$this->Auth->user()) : ?> 
+    <li class="nav-item">
+      <a class="nav-link" href="/defect_tracking/users/login"><i class="fa fa-user-circle-o" aria-hidden="true"> Log in</i></a>
     </li>
+    <?php else: ?>
+      <li class="nav-item">
+        <a class="nav-link" href="/defect_tracking/users/logout"><i class="fa fa-user-circle-o" aria-hidden="true"> Log out</i></a>
+      </li>
+    <?php endif; ?>
+
+
   </ul>
+
+    
+
 </nav>
 
     <?= $this->Flash->render() ?>

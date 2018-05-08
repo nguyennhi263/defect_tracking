@@ -14,8 +14,6 @@
             )
         ?></li>
         <li><?= $this->Html->link(__('List Users'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List User Positions'), ['controller' => 'UserPositions', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New User Position'), ['controller' => 'UserPositions', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="users form large-9 medium-8 columns content">
@@ -25,7 +23,7 @@
         <?php
             echo $this->Form->control('LoginName');
             echo $this->Form->control('UserPass');
-            echo $this->Form->control('PositionName', ['options' => $userPositions]);
+            echo $this->Form->control('PositionID');
             echo $this->Form->control('FullName');
             echo $this->Form->control('Email');
             echo $this->Form->control('Imei');

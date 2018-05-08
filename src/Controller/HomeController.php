@@ -6,6 +6,7 @@ use Cake\ORM\Table;
 use App\Controller\AppController;
 use Cake\Controller\Component\RequestHandlerComponent ;
 use Cake\I18n\Time;
+use Cake\Event\Event;
 class HomeController extends AppController
 {
     public function initialize()
@@ -13,6 +14,19 @@ class HomeController extends AppController
         parent::initialize();
         $this->loadComponent('RequestHandler');
     }
+
+    public function isAuthorized($user)
+    {
+        parent::isAuthorized($user);
+        return true;
+    }
+    public function beforeFilter(Event $event)
+    {   
+        parent::beforeFilter($event);
+        $this->Auth->allow();   
+    }
+
+
     public function index()
     {
 

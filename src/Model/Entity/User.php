@@ -2,7 +2,7 @@
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
-
+use Cake\Auth\DefaultPasswordHasher; // hash password
 /**
  * User Entity
  *
@@ -36,4 +36,16 @@ class User extends Entity
         'Imei' => true,
         'RecordStatus' => true
     ];
+
+    protected $_hidden = [
+        'UserPass'
+    ];
+    protected function _setUserPass($value)
+    {
+        if (strlen($value)) {
+            $hasher = new DefaultPasswordHasher();
+
+            return $hasher->hash($value);
+        }
+    }
 }

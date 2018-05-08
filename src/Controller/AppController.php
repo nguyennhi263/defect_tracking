@@ -51,6 +51,46 @@ class AppController extends Controller
 
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
+
+         $this->loadComponent('Auth', [
+            'authorize'=> 'Controller',
+            'authenticate' => [
+                'Form' => [
+                    'fields' => [
+                        'username' => 'LoginName',
+                        'password' => 'UserPass'
+                    ]
+                ],
+                'Basic' => [
+                    'fields' => [
+                        'username' => 'LoginName',
+                        'password' => 'UserPass'
+                    ]
+                ]
+            ],
+            'loginAction' => [
+                'controller' => 'Users',
+                'action' => 'login'
+            ],
+            'loginRedirect' => [
+                'controller' => 'DefectHeaders',
+                'action' => 'index'
+            ],
+            'logoutRedirect' => [
+                'controller' => 'Users',
+                'action' => 'login',
+                'home'
+            ],
+             // If unauthorized, return them to page they were just on
+            'unauthorizedRedirect' => $this->referer()
+        ]);
+
+        // Allow the display action so our PagesController
+        // continues to work. Also enable the read only actions.
+       // $this->Auth->allow(['display', 'view', 'index']);
+    }
+    public function beforeRender(Event $event){
+        $this->set('Auth',$this->Auth);
     }
     public function beforeFilter(\Cake\Event\Event $event)
     {
@@ -68,5 +108,20 @@ class AppController extends Controller
         $this->UnitTypesTable = TableRegistry::get('UnitTypes');
         $this->UserPositionsTable = TableRegistry::get('UserPositions');
         $this->UsersTable = TableRegistry::get('Users');
+
+        // allow authen
+        $this->Auth->allow(['login', 'logout','display']);
     }
+
+    public function isAuthorized($user)
+    {
+        // Admin can access every action
+        if ( $user['PositionID'] == '1') {
+            return true;
+        }
+        // Default deny
+        return false;
+    }
+
+
 }

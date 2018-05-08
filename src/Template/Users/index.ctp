@@ -8,8 +8,6 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New User'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List User Positions'), ['controller' => 'UserPositions', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New User Position'), ['controller' => 'UserPositions', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="users index large-9 medium-8 columns content">
@@ -34,7 +32,7 @@
                 <td><?= $this->Number->format($user->UserID) ?></td>
                 <td><?= h($user->LoginName) ?></td>
                 <td><?= h($user->UserPass) ?></td>
-                <td><?= $user->has('user_position') ? $this->Html->link($user->user_position->PositionID, ['controller' => 'UserPositions', 'action' => 'view', $user->user_position->PositionID]) : '' ?></td>
+                <td><?= $this->Number->format($user->PositionID) ?></td>
                 <td><?= h($user->FullName) ?></td>
                 <td><?= h($user->Email) ?></td>
                 <td><?= h($user->Imei) ?></td>
