@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Controller\Component\RequestHandlerComponent ;
+use Cake\I18n\Time;
 /**
  * DefectItems Controller
  *
@@ -99,6 +100,17 @@ class DefectItemsController extends AppController
         $this->set(compact('defectItem', 'defectHeaders', 'defectPlaces', 'tradeDescriptions'));
     }
 
+    public function close($id = null, $defectID = null){
+        $defectItem = $this->DefectItems->get($id);
+        
+        $defectItem->DefectStatus = "close";
+            $defectItem->CloseDate = new Time();
+            if ($this->DefectItems->save($defectItem)) {
+                
+                return $this->redirect(['controller' => 'DefectHeaders', 'action' => 'view',$defectID]);
+            }
+         $this->Flash->error(__('The defect item could not be saved. Please, try again.'));
+    }
     /**
      * Delete method
      *

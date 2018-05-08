@@ -122,7 +122,7 @@ class DefectHeadersController extends AppController
         */
         $query = $this->DefectItemsTable
                     ->find()
-                    ->where(['DefectStatus'=>'close','DATE(created)' => date('Y-m-d')]);
+                    ->where(['DefectStatus'=>'close','DATE(CloseDate)' => date('Y-m-d')]);
         $defectItemsClose = $query->toArray();
         $this->set(compact('defectItemsClose'));
 

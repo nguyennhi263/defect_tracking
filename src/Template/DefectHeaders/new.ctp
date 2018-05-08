@@ -28,7 +28,7 @@
                 <th>Description</th>
                 <th>Place</th>
                 <th>Note</th>
-                <th>IMG</th>
+                <th class="hidden">IMG</th>
               </tr>
             </thead>
             <tbody id="table-item">
@@ -37,7 +37,7 @@
                 <td><?= $this->Form->control('TradeDescriptionID', ['label' => false, 'options' => $tradeDescriptions,'class'=>'form-control']); ?></td>
                 <td><?= $this->Form->control('PlaceID', ['label' => false, 'options' => $defectPlaces,'class'=>'form-control']); ?></td>
                 <td><input type="text" class="form-control" id="DefectItemNote" placeholder="enter note" name="DefectItemNote"></td>
-                <td><?= $this->Form->control('ImageFileNameBefore', ['label'=>false ,'type' => 'file','class'=>'form-control-file']); ?></td>
+                <td class="hidden"><?= $this->Form->control('ImageFileNameBefore', ['label'=>false ,'type' => 'file','class'=>'form-control-file']); ?></td>
                 <td class="remove-row" value="1"><i class="fa fa-trash" aria-hidden="true"></i></td>
               </tr>
             </tbody>
@@ -108,7 +108,7 @@
 
         html += ' <td><?= $this->Form->control('PlaceID', ['label' => false, 'options' => $defectPlaces,'class'=>'form-control']); ?></td>';
         html += '<td><input type="text" class="form-control" id="DefectItemNote" placeholder="enter note" name="DefectItemNote"></td>';
-        html += '<td><?= $this->Form->control('ImageFileNameBefore', ['label'=>false ,'type' => 'file','class'=>'form-control-file']); ?></td>';
+        html += '<td class="hidden"><?= $this->Form->control('ImageFileNameBefore', ['label'=>false ,'type' => 'file','class'=>'form-control-file']); ?></td>';
         html += '<td class="remove-row" value="'+$idList+'" ><i class="fa fa-trash" aria-hidden="true"></i></td>';
         html +=' </tr>';
 
