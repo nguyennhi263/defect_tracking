@@ -36,6 +36,7 @@ class DefectPlacesController extends AppController
                     '_serialize' => ['listDefectPlace']
                 ]);
     }
+    
     public function view($id = null)
     {
         $defectPlace = $this->DefectPlaces->get($id, [

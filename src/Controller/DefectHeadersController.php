@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\I18n\Date;
 use Cake\Controller\Component\RequestHandlerComponent ;
+use Cake\Http\Exception\NotFoundException;
 
 class DefectHeadersController extends AppController
 {
@@ -112,8 +113,8 @@ class DefectHeadersController extends AppController
             ** Get total defect open today
         */
         $query = $this->DefectItemsTable
-                    ->find()
-                    ->where(['DefectStatus'=>'open','created '=>new Date()]);
+                    ->find('all')
+                    ->where(['DefectStatus'=>'open','DATE(created)' => date('Y-m-d')]);
         $defectItemsToday = $query->toArray();
         $this->set(compact('defectItemsToday'));
         /*
@@ -121,11 +122,18 @@ class DefectHeadersController extends AppController
         */
         $query = $this->DefectItemsTable
                     ->find()
-                    ->where(['DefectStatus'=>'close','created '=>new Date()]);
+                    ->where(['DefectStatus'=>'close','DATE(created)' => date('Y-m-d')]);
         $defectItemsClose = $query->toArray();
         $this->set(compact('defectItemsClose'));
+
+        $this->paginate = [
+            'contain' => ['Units']
+        ];
+        $defectHeaders = $this->paginate($this->DefectHeaders);
+
+        $this->set(compact('defectHeaders'));
     }
-    public function list_header()
+    public function listHeader()
     {
         $this->paginate = [
             'contain' => ['Units']
@@ -217,11 +225,13 @@ class DefectHeadersController extends AppController
             $defectHeader = $this->DefectHeaders->patchEntity($defectHeader, $this->request->getData());
             
             if ($this->DefectHeaders->save($defectHeader)) {
+                $defectIDs = [];
+                //$defectIDs = $defectHeader->DefectID;
+                push_array($defectIDs,$defectHeader->DefectID);
+                
 
-                $defectIDs = $defectHeader->DefectID;
-
-                 $this->set(['defectIDs' => $defectIDs,
-                    '_serialize' => ['defectIDs']]);
+                $this->set(compact('defectIDs'));
+                $this->set('_serialize',['defectIDs']);
                 
                 $this->Flash->success(__('The defect header has been saved.'));
                 return $this->redirect(['action' => 'index']);
@@ -232,6 +242,8 @@ class DefectHeadersController extends AppController
         $this->set(compact('defectHeader', 'units'));
                 
     }
+ 
+
 
     /**
      * Edit method

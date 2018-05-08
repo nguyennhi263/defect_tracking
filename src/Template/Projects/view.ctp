@@ -51,7 +51,7 @@
                  </div>
             <?php endforeach; endif;?>
              <button type="button" class="btn btn-dark">
-                    <a href="/defect_tracking/phases/view/<?=$phases->PhaseID?>" class="btn btn-primary btn-dark " role="button"> 
+                    <a href="/defect_tracking/phases/add>" class="btn btn-primary btn-dark " role="button"> 
                     <i class="fa fa-plus-circle aria-hidden="true">Add Phase </i> 
                     </a>
                 </button>

@@ -18,7 +18,7 @@
     </div>
     <!-- list defect item-->
     <div class="row">
-        <form ">
+        <form action="/defect_tracking/defect-headers/" enctype="multipart/form-data">
         <div class="form-group">
     
          <table class="table table-hover">
@@ -37,7 +37,7 @@
                 <td><?= $this->Form->control('TradeDescriptionID', ['label' => false, 'options' => $tradeDescriptions,'class'=>'form-control']); ?></td>
                 <td><?= $this->Form->control('PlaceID', ['label' => false, 'options' => $defectPlaces,'class'=>'form-control']); ?></td>
                 <td><input type="text" class="form-control" id="DefectItemNote" placeholder="enter note" name="DefectItemNote"></td>
-                <td>img</td>
+                <td><?= $this->Form->control('ImageFileNameBefore', ['label'=>false ,'type' => 'file','class'=>'form-control-file']); ?></td>
                 <td class="remove-row" value="1"><i class="fa fa-trash" aria-hidden="true"></i></td>
               </tr>
             </tbody>
@@ -70,20 +70,30 @@
     // submit insert defect
      $('#insertItem').on('click', function() {
 
-        $('#table-item').each(function(){
-          
-           // insert defect header
+         // insert defect header
            $.ajax({
                 dataType: "html",
-                method: "POST",
+                method: "GET",
                 evalScripts: true,
-                url: "/defect_tracking/defect-headers/add.json",
-                data: ({'UnitID':'2'}),
+                url: "/defect_tracking/defect-items/newHeader/"+<?= $unit->UnitID ?>+".json",
+                data: ({}),
                 success: function (data, textStatus) {
-                   alert(data);
+                   // alert(data);
                 }
             });
+        $('#table-item').each(function(){
+          $(this).find('tr').each(function(){
+
+               $PlaceID = $(this).find('select[name=PlaceID]').val();
+               $TradeDescriptionID = $(this).find('select[name=TradeDescriptionID]').val();
+               $note = $(this).find('#DefectItemNote').val();
+              // $image = $(this).find('#ImageFileNameBefore');
+              $image = $(this).find('input[type=file]');
+              insert_item($TradeDescriptionID,$PlaceID,$image,$note);
+            });
+          
          });
+        window.location.href = "https://www.example.com";
      });
 
 });
@@ -98,13 +108,27 @@
 
         html += ' <td><?= $this->Form->control('PlaceID', ['label' => false, 'options' => $defectPlaces,'class'=>'form-control']); ?></td>';
         html += '<td><input type="text" class="form-control" id="DefectItemNote" placeholder="enter note" name="DefectItemNote"></td>';
-        html += '<td>img</td>';
+        html += '<td><?= $this->Form->control('ImageFileNameBefore', ['label'=>false ,'type' => 'file','class'=>'form-control-file']); ?></td>';
         html += '<td class="remove-row" value="'+$idList+'" ><i class="fa fa-trash" aria-hidden="true"></i></td>';
         html +=' </tr>';
 
         table.append(html);
 
     });
+
+    function insert_item($Desc,$Place,$Image,$Note){
+        //alert('a');
+        $.ajax({
+                dataType: "html",
+                method: "POST",
+                evalScripts: true,
+                url: "/defect_tracking/defect-items/newDefectItem/"+$Desc+"/"+$Place+"/"+$Note,
+                data: new Formdata($Image),
+                success: function (data, textStatus) {
+                   // alert(data);
+                }
+            });
+    }
 
     getListDefectPlace(<?= $unit->unit_type->UnitTypeID ?>);
     

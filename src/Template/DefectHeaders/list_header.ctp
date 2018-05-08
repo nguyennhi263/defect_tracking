@@ -6,7 +6,7 @@
 ?>
 <div class="defectHeaders index large-9 medium-8 columns content">
     <h3><?= __('List Defect Pending') ?></h3>
-    <table class="table table-dark table-hover">
+    <table class="table table-hover">
     <thead>
       <tr>
         <th>Project</th>

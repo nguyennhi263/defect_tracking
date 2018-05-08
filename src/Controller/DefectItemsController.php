@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+use Cake\Controller\Component\RequestHandlerComponent ;
 /**
  * DefectItems Controller
  *
@@ -12,6 +12,11 @@ use App\Controller\AppController;
  */
 class DefectItemsController extends AppController
 {
+    public function initialize()
+    {
+        parent::initialize();
+        $this->loadComponent('RequestHandler');
+    }
 
     /**
      * Index method
@@ -112,5 +117,70 @@ class DefectItemsController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    public function newHeader($UnitID = null ){
+        if ($UnitID == null ){ $UnitID = 1 ; }
+        $defectHeader = $this->DefectHeadersTable->newEntity();
+        $defectHeader->UnitID = $UnitID ;
+        
+
+        if ($this->DefectHeadersTable->save($defectHeader)){
+            $this->set(['defectHeader' => $defectHeader,
+                    '_serialize' => ['defectHeader']
+                ]);
+        }
+    }
+    public function newDefectItem($TradeDescriptionID = null,$PlaceID = nul,$note = null ){
+       
+        $headerID = $this->DefectHeadersTable->find('all',['fields'=>'DefectID'])->last()->DefectID;
+
+        $defectItem = $this->DefectItemsTable->newEntity();
+        $defectItem->DefectID = $headerID;
+        //
+        $defectItem->TradeDescriptionID = $TradeDescriptionID;
+        $defectItem->PlaceID = $PlaceID;
+        $defectItem->DefectStatus = "open";
+        $defectItem->Note = $note;
+        
+        // xử lý ảnh
+
+        
+                /**     Xử lý ảnh
+            */
+
+            // lấy tên file upload
+            date_default_timezone_set('Asia/Ho_Chi_Minh');
+            $time = date("Ymd_His");
+            $image=$_FILES['ImageFileNameBefore']['ImageFileNameBefore'];
+            // Lấy tên gốc của file
+            $filename = stripslashes($_FILES['ImageFileNameBefore']['ImageFileNameBefore']);
+            $filetype = $_FILES['ImageFileNameBefore']['type'];
+            $file_tmp = $_FILES['ImageFileNameBefore']['tmp_name'];
+            //Lấy phần mở rộng của file
+            $explore = explode ('.',$filename); //chia chuoi bang '.'
+            $ext = end($explore);
+            //kiểm tra file phải hình ảnh ko
+            $chophep = array('jpeg','png','bpm','jpg','JPEG','JPG');
+            if (in_array($ext,$chophep) === false){
+                    $this->Flash->success(__('File upload không hợp lệ'));
+                }
+            /*----------UPLOADING----------*/
+            // đặt tên mới cho file hình up lên
+            $image_name = $time.'.'.$ext;
+            // gán thêm cho file này đường dẫn
+            $newname=$_SERVER["DOCUMENT_ROOT"]. '/defect_tracking/webroot/img/DefectItem/' .$image_name;
+            //nếu ko có lỗi xảy ra->> tiếp tục upload
+                if (move_uploaded_file($file_tmp,$newname)){
+                      $defectItem->ImageFileNameBefore =$image_name;
+                    }
+                /*
+                *   Tiếp tục lưu data
+                */
+        if ($this->DefectItemsTable->save($defectItem)){
+            $this->set(['defectItem' => $defectItem,
+                    '_serialize' => ['defectItem']
+                ]);
+        }
     }
 }
