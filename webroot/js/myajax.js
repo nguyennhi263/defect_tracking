@@ -1,5 +1,5 @@
 jQuery(document).ready(function ($) {
-   // getCountDefectByMonthChart();
+   
 });
 /*
   set unit places to map

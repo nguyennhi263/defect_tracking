@@ -1,5 +1,6 @@
 
 <!--Left Menu -->
+
 <div class="row">
 <div class="col-lg-2  col-md-3  bg-dark">
    
@@ -29,22 +30,14 @@
                 <th>IMG</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td>John</td>
-                <td>Doe</td>
-                <td>john@example.com</td>
-                <td><input type="text" class="form-control" id="DefectItemNote" placeholder="enter note" name="DefectItemNote"></td>
-                <td>img</td>
-                <td>action</td>
-              </tr>
-              <tr>
+            <tbody id="table-item">
+              <tr id="row-1">
                 <td><?= $this->Form->control('TradeID', ['label' => false, 'options' => $trades,'class'=>'form-control']) ?></td>
                 <td><?= $this->Form->control('TradeDescriptionID', ['label' => false, 'options' => $tradeDescriptions,'class'=>'form-control']); ?></td>
                 <td><?= $this->Form->control('PlaceID', ['label' => false, 'options' => $defectPlaces,'class'=>'form-control']); ?></td>
                 <td><input type="text" class="form-control" id="DefectItemNote" placeholder="enter note" name="DefectItemNote"></td>
                 <td>img</td>
-                <td>action</td>
+                <td class="remove-row"><i class="fa fa-trash" aria-hidden="true"></i></td>
               </tr>
             </tbody>
           </table>
@@ -65,10 +58,28 @@
     </div>
 </div>
 </div>
-
 <script type="text/javascript">
+  
+    var $idList = 1;
+    
     $("#addItemBtn").click(function () {
-        alert('a');
+        
+        var table = $("#table-item");
+        html = '<tr id="$idList++">';
+        html += '<td><?= $this->Form->control('TradeID', ['label' => false, 'options' => $trades,'class'=>'form-control']) ?></td>';
+        html += '<td><?= $this->Form->control('TradeDescriptionID', ['label' => false, 'options' => $tradeDescriptions,'class'=>'form-control']); ?></td>';
+
+        html += ' <td><?= $this->Form->control('PlaceID', ['label' => false, 'options' => $defectPlaces,'class'=>'form-control']); ?></td>';
+        html += '<td><input type="text" class="form-control" id="DefectItemNote" placeholder="enter note" name="DefectItemNote"></td>';
+        html += '<td>img</td>';
+        html += '<td  onclick="delete_row"><i class="fa fa-trash" aria-hidden="true"></i></td>';
+        html +=' </tr>';
+        table.append(html);
     });
+  
     getListDefectPlace(<?= $unit->unit_type->UnitTypeID ?>);
+    
+    function delete_row(){
+        alert('dele');
+    }
 </script>
