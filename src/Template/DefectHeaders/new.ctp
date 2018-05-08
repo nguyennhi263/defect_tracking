@@ -1,6 +1,8 @@
 
 <!--Left Menu -->
+<script type="text/javascript">
 
+</script>
 <div class="row">
 <div class="col-lg-2  col-md-3  bg-dark">
    
@@ -16,10 +18,9 @@
     </div>
     <!-- list defect item-->
     <div class="row">
-        <form action="/action_page.php">
+        <form ">
         <div class="form-group">
-        
-        
+    
          <table class="table table-hover">
             <thead>
               <tr>
@@ -37,12 +38,12 @@
                 <td><?= $this->Form->control('PlaceID', ['label' => false, 'options' => $defectPlaces,'class'=>'form-control']); ?></td>
                 <td><input type="text" class="form-control" id="DefectItemNote" placeholder="enter note" name="DefectItemNote"></td>
                 <td>img</td>
-                <td class="remove-row"><i class="fa fa-trash" aria-hidden="true"></i></td>
+                <td class="remove-row" value="1"><i class="fa fa-trash" aria-hidden="true"></i></td>
               </tr>
             </tbody>
           </table>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary" id="insertItem">Submit</button>
       </form>
 
     </div>
@@ -59,29 +60,52 @@
 </div>
 </div>
 <script type="text/javascript">
-  
     var $idList = 1;
+  jQuery(document).ready(function ($) {
     
+    $('#table-item').on('click', '.remove-row', function() {
+        var $id = $(this).attr('value');
+        $("#row-"+$id).remove();
+    });
+    // submit insert defect
+     $('#insertItem').on('click', function() {
+
+        $('#table-item').each(function(){
+          
+           // insert defect header
+           $.ajax({
+                dataType: "html",
+                method: "POST",
+                evalScripts: true,
+                url: "/defect_tracking/defect-headers/add.json",
+                data: ({'UnitID':'2'}),
+                success: function (data, textStatus) {
+                   alert(data);
+                }
+            });
+         });
+     });
+
+});
+   
+    // add row
     $("#addItemBtn").click(function () {
-        
+        $idList ++;
         var table = $("#table-item");
-        html = '<tr id="$idList++">';
+        html = '<tr id=row-'+$idList+'>';
         html += '<td><?= $this->Form->control('TradeID', ['label' => false, 'options' => $trades,'class'=>'form-control']) ?></td>';
-        html += '<td><?= $this->Form->control('TradeDescriptionID', ['label' => false, 'options' => $tradeDescriptions,'class'=>'form-control']); ?></td>';
+        html += '<td><?= $this->Form->control("TradeDescriptionID", ['label' => false, 'options' => $tradeDescriptions,'class'=>'form-control']); ?></td>';
 
         html += ' <td><?= $this->Form->control('PlaceID', ['label' => false, 'options' => $defectPlaces,'class'=>'form-control']); ?></td>';
         html += '<td><input type="text" class="form-control" id="DefectItemNote" placeholder="enter note" name="DefectItemNote"></td>';
         html += '<td>img</td>';
-        html += '<td  onclick="delete_row"><i class="fa fa-trash" aria-hidden="true"></i></td>';
+        html += '<td class="remove-row" value="'+$idList+'" ><i class="fa fa-trash" aria-hidden="true"></i></td>';
         html +=' </tr>';
+
         table.append(html);
+
     });
-  
+
     getListDefectPlace(<?= $unit->unit_type->UnitTypeID ?>);
     
-    function delete_row(){
-        alert('dele');
-    }
-    $(document).on('change','.soluong',function(e) {
-            
 </script>

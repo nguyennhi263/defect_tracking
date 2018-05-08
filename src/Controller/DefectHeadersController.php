@@ -4,19 +4,20 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\I18n\Date;
 use Cake\Controller\Component\RequestHandlerComponent ;
-/**
- * DefectHeaders Controller
- *
- * @property \App\Model\Table\DefectHeadersTable $DefectHeaders
- *
- * @method \App\Model\Entity\DefectHeader[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
- */
+
 class DefectHeadersController extends AppController
 {
     public function initialize()
     {
         parent::initialize();
         $this->loadComponent('RequestHandler');
+    }
+    public function insert(){
+        if ($this->request->is('get')) {
+        $test = $this->request->getData('DefectItemNote');
+        $this->set(compact('test'));
+        }
+        
     }
     public function block($id = null)
     {
@@ -211,17 +212,25 @@ class DefectHeadersController extends AppController
     public function add()
     {
         $defectHeader = $this->DefectHeaders->newEntity();
-        if ($this->request->is('post')) {
-            $defectHeader = $this->DefectHeaders->patchEntity($defectHeader, $this->request->getData());
-            if ($this->DefectHeaders->save($defectHeader)) {
-                $this->Flash->success(__('The defect header has been saved.'));
+        if ($this->request->is('post')||$this->request->is('ajax') ) {
 
+            $defectHeader = $this->DefectHeaders->patchEntity($defectHeader, $this->request->getData());
+            
+            if ($this->DefectHeaders->save($defectHeader)) {
+
+                $defectIDs = $defectHeader->DefectID;
+
+                 $this->set(['defectIDs' => $defectIDs,
+                    '_serialize' => ['defectIDs']]);
+                
+                $this->Flash->success(__('The defect header has been saved.'));
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The defect header could not be saved. Please, try again.'));
         }
         $units = $this->DefectHeaders->Units->find('list', ['limit' => 200]);
         $this->set(compact('defectHeader', 'units'));
+                
     }
 
     /**
