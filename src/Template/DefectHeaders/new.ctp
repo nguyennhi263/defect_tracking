@@ -82,4 +82,6 @@
     function delete_row(){
         alert('dele');
     }
+    $(document).on('change','.soluong',function(e) {
+            
 </script>
