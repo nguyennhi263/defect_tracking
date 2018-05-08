@@ -30,12 +30,9 @@ class UsersTable extends Table
     {
         parent::initialize($config);
         $this->setTable('users');
-        $this->setDisplayField('UserID');
+        $this->setDisplayField('LoginName');
         $this->setPrimaryKey('UserID');
-        $this->belongsTo('UserPositions', [
-            'foreignKey' => 'PositionID',
-            'joinType' => 'INNER'
-        ]);
+       
     }
 
     /**

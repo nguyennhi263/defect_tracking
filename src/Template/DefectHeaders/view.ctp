@@ -62,7 +62,10 @@
                     <td><?= h($defectItems->Note) ?></td>
                     <td><?= h($defectItems->created) ?></td>
                     <td class="actions">
+                         <!-- Close -->
+                        <?php if ($defectItems->DefectStatus != 'close'): ?>
                         <a href="/defect_tracking/defect-items/close/<?=$defectItems->DefectItemID  ?>/<?= $defectHeader->DefectID ?>" class="btn btn-outline-danger ">Close Defect</a>
+                        <?php endif ?>
                         <!-- Edit -->
                         <a href="/defect_tracking/defect-items/edit/<?= $defectItems->DefectItemID ?>"  class="btn btn-dark " role="button"> 
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i> 

@@ -4,39 +4,28 @@
  * @var \App\Model\Entity\DefectItem $defectItem
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $defectItem->DefectItemID],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $defectItem->DefectItemID)]
-            )
-        ?></li>
-        <li><?= $this->Html->link(__('List Defect Items'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Defect Headers'), ['controller' => 'DefectHeaders', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Defect Header'), ['controller' => 'DefectHeaders', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Defect Places'), ['controller' => 'DefectPlaces', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Defect Place'), ['controller' => 'DefectPlaces', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Trade Descriptions'), ['controller' => 'TradeDescriptions', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Trade Description'), ['controller' => 'TradeDescriptions', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="defectItems form large-9 medium-8 columns content">
-    <?= $this->Form->create($defectItem) ?>
-    <fieldset>
-        <legend><?= __('Edit Defect Item') ?></legend>
-        <?php
-            echo $this->Form->control('DefectID', ['options' => $defectHeaders]);
-            echo $this->Form->control('TradeDescriptionID', ['options' => $tradeDescriptions]);
-            echo $this->Form->control('ImageFileNameBefore');
-            echo $this->Form->control('ImageFileNameAfter');
-            echo $this->Form->control('PlaceID', ['options' => $defectPlaces]);
-            echo $this->Form->control('CloseDate', ['empty' => true]);
-            echo $this->Form->control('DefectStatus');
-            echo $this->Form->control('Note');
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
+<div class="row">
+    <!--Left Menu -->
+    <div class="left-menu col-sm-3 col-md-2 bg-dark">
+          <div class="btn-group-vertical btn-block">
+                <button type="button" class="btn btn-block btn-dark active">List Defect</button>
+              <a href="/defect_tracking/defect-headers/block" class="btn btn-dark ">Create New Defect</a>
+              <button type="button" class="btn btn-block btn-dark"></button>
+            </div>
+    </div>
+    <div class="defectItems form large-9 medium-8 columns content">
+        <?= $this->Form->create($defectItem) ?>
+        <fieldset>
+            <legend><?= __('Edit Defect Item') ?></legend>
+            <?php
+                echo $this->Form->control('TradeDescriptionID', ['options' => $tradeDescriptions,'class'=>'form-group']);
+                echo $this->Form->control('PlaceID', ['options' => $defectPlaces]);
+                echo $this->Form->control('CloseDate', ['empty' => true]);
+                echo $this->Form->control('DefectStatus');
+                echo $this->Form->control('Note');
+            ?>
+        </fieldset>
+        <?= $this->Form->button(__('Submit')) ?>
+        <?= $this->Form->end() ?>
+    </div>
 </div>

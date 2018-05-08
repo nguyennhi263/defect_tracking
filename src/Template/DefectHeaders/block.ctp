@@ -24,7 +24,7 @@
                     <div id="phase-<?=$phases->PhaseID ?>" class="collapse">
                     <?php if(!empty($phases->blocks[0])): ?>
                         <?php foreach ($phases->blocks[0] as $block): ?>
-                            <a href="/defect_tracking/defect-headers/new/<?=$block->BlockID?>"  class="btn btn-dark" role="button"> 
+                            <a href="/defect_tracking/defect-headers/block/<?=$block->BlockID?>"  class="btn btn-dark" role="button"> 
                              <i class="fa fa-sun-o" aria-hidden="true"> <?= $block->BlockName ?> </i> 
                          </a>
                     <?php endforeach; endif;?>
