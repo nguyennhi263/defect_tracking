@@ -5,15 +5,15 @@ use Cake\Routing\Router;
  * @var \App\Model\Entity\UnitType $unitType
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Unit Type'), ['action' => 'edit', $unitType->UnitTypeID]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Unit Type'), ['action' => 'delete', $unitType->UnitTypeID], ['confirm' => __('Are you sure you want to delete # {0}?', $unitType->UnitTypeID)]) ?> </li>
-        <li><?= $this->Html->link(__('List Unit Types'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Unit Type'), ['action' => 'add']) ?> </li>
-    </ul>
-</nav>
+<!--Left Menu -->
+<div class="row">
+<div class="col-lg-2  col-md-3 bg-dark">
+    <div class="btn-group-vertical btn-block">
+        <a href="/defect_tracking/projects/" class="btn btn-dark ">List Project</a>
+      <a href="/defect_tracking/unit-types/" class="btn btn-dark ">Unit Types</a>
+      <a href="/defect_tracking/unit-types/add" class="btn btn-dark ">Create Unit Types</a>
+    </div>
+</div>
 
 <div class="unitTypes view large-9 medium-8 columns content">
     <h3><?= h($unitType->name) ?></h3>
@@ -48,3 +48,4 @@ use Cake\Routing\Router;
     getListDefectPlace($("#unit-type-id").val());
     get_coordinates();
 </script>
+</div>

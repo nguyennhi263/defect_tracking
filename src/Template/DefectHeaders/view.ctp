@@ -8,7 +8,7 @@
     <!--Left Menu -->
     <div class="left-menu col-sm-3 col-md-2 bg-dark">
           <div class="btn-group-vertical btn-block">
-                <button type="button" class="btn btn-block btn-dark active">List Defect</button>
+               <a href="/defect_tracking/defect-headers/" class="btn btn-dark ">List Defect</a>
               <a href="/defect_tracking/defect-headers/block" class="btn btn-dark ">Create New Defect</a>
               <button type="button" class="btn btn-block btn-dark"></button>
             </div>
@@ -30,7 +30,7 @@
         <div class="related">
             <h4><?= __('List Defect Item') ?></h4>
             <?php if (!empty($defectHeader->defect_items)): ?>
-            <table cellpadding="0" cellspacing="0" class="table table-dark table-hover">
+            <table cellpadding="0" cellspacing="0" class="table table-light table-hover">
                 <tr >
                     <th scope="col"><?= __('Trade') ?></th>
                     <th scope="col"><?= __('Description') ?></th>
@@ -67,7 +67,7 @@
                         <a href="/defect_tracking/defect-items/close/<?=$defectItems->DefectItemID  ?>/<?= $defectHeader->DefectID ?>" class="btn btn-outline-danger ">Close Defect</a>
                         <?php endif ?>
                         <!-- Edit -->
-                        <a href="/defect_tracking/defect-items/edit/<?= $defectItems->DefectItemID ?>"  class="btn btn-dark " role="button"> 
+                        <a href="/defect_tracking/defect-items/edit/<?= $defectItems->DefectItemID ?>"  class="btn btn-light " role="button"> 
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i> 
                         </a>
                         

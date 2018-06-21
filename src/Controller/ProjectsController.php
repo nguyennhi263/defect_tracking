@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Controller\Component\RequestHandlerComponent;
+use Cake\Event\Event;
 /**
  * Projects Controller
  *
@@ -12,6 +13,18 @@ use Cake\Controller\Component\RequestHandlerComponent;
  */
 class ProjectsController extends AppController
 {
+    public function isAuthorized($user)
+    {
+        if ($user['PositionID'] == '1' || $user['PositionID'] == '2')  {
+                return true;
+        }
+       return parent::isAuthorized($user);
+    }
+    public function beforeFilter(Event $event)
+    {   
+        parent::beforeFilter($event);
+        $this->Auth->allow([]);   
+    }
     public function initialize()
     {
             parent::initialize();

@@ -1,6 +1,6 @@
 <?php
 use Migrations\AbstractMigration;
-
+use Cake\Event\Event;
 class CreateDefectPlaces extends AbstractMigration
 {
     /**

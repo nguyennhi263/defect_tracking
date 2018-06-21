@@ -4,25 +4,23 @@
  * @var \App\Model\Entity\User $user
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $user->UserID],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $user->UserID)]
-            )
-        ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['action' => 'index']) ?></li>
-    </ul>
-</nav>
+<!--Left Menu -->
+<div class="row">
+<div class="col-lg-2  col-md-3 bg-dark">
+    <div class="btn-group-vertical btn-block">
+    <a href="/defect_tracking/users/" class="btn btn-dark ">List User</a>
+      <a href="/defect_tracking/users/add" class="btn btn-dark ">Create New User</a>
+      
+    </div>
+</div>
+<div class="users col-lg-10  col-md-9 columns content">
 <div class="users form large-9 medium-8 columns content">
     <?= $this->Form->create($user) ?>
     <fieldset>
         <legend><?= __('Edit User') ?></legend>
         <?php
             echo $this->Form->control('LoginName');
-            echo $this->Form->control('UserPass');
+            echo $this->Form->control('UserPass',['type'=>'password']);
             echo $this->Form->control('PositionID');
             echo $this->Form->control('FullName');
             echo $this->Form->control('Email');
@@ -32,4 +30,5 @@
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>
+</div>
 </div>

@@ -7,15 +7,18 @@ use Cake\ORM\Entity;
  * @var \App\Model\Entity\UnitType[]|\Cake\Collection\CollectionInterface $unitTypes
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Unit Type'), ['action' => 'add']) ?></li>
-    </ul>
-</nav>
+<!--Left Menu -->
+<div class="row">
+<div class="col-lg-2  col-md-3 bg-dark">
+    <div class="btn-group-vertical btn-block">
+        <a href="/defect_tracking/projects/" class="btn btn-dark ">List Project</a>
+      <a href="/defect_tracking/unit-types/" class="btn btn-dark ">Unit Types</a>
+      <a href="/defect_tracking/unit-types/add" class="btn btn-dark ">Create Unit Types</a>
+    </div>
+</div>
 <div class="unitTypes index large-9 medium-8 columns content">
     <h3><?= __('Unit Types') ?></h3>
-    <table cellpadding="0" cellspacing="0">
+    <table class="table">
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('UnitTypeID') ?></th>
@@ -49,4 +52,5 @@ use Cake\ORM\Entity;
         </ul>
         <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
     </div>
+</div>
 </div>

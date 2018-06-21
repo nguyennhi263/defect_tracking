@@ -20,7 +20,7 @@ jQuery(document).ready(function ($) {
                 alert("Please enter place name, 4 characters minimum.");
             } else {
                 // Run ajax here
-                alert("Place: " + place_name_val + " - x:" + relativeX + ", y:" + relativeY);
+                //alert("Place: " + place_name_val + " - x:" + relativeX + ", y:" + relativeY);
                 // ajax insert defect place
                     $.ajax({
                         dataType: "html",

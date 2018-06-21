@@ -53,7 +53,7 @@ $cakeDescription = 'Defect Tracking';
   <!-- Brand -->
   <a class="navbar-brand" href="#"><img src="/defect_tracking/webroot/img/cake-logo.png" alt="Logo" style="width:40px;">Defect Tracking</a>
   <!-- Links -->
-  <ul class="navbar-nav justify-content-center">
+  <ul class="navbar-nav ">
     <li class="nav-item">
      
       <?= $this->Html->link(__('Defect Management'), ['controller' => 'DefectHeaders', 'action' => 'index'],['class'=>'nav-link']) ?>
@@ -64,18 +64,9 @@ $cakeDescription = 'Defect Tracking';
     <li class="nav-item">
       <?= $this->Html->link(__('Trade Management'), ['controller' => 'Trades', 'action' => 'index'],['class'=>'nav-link']) ?>
     </li>
-
-    <!-- User -->
-    <?php if (!$this->Auth->user()) : ?> 
     <li class="nav-item">
-      <a class="nav-link" href="/defect_tracking/users/login"><i class="fa fa-user-circle-o" aria-hidden="true"> Log in</i></a>
+      <?= $this->Html->link(__('User Management'), ['controller' => 'Users', 'action' => 'index'],['class'=>'nav-link']) ?>
     </li>
-    <?php else: ?>
-      <li class="nav-item">
-        <a class="nav-link" href="/defect_tracking/users/logout"><i class="fa fa-user-circle-o" aria-hidden="true"> Log out</i></a>
-      </li>
-    <?php endif; ?>
-
 
   </ul>
 

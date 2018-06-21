@@ -1,6 +1,6 @@
 <?php
 namespace App\Controller;
-
+use Cake\Event\Event;
 use App\Controller\AppController;
 
 /**
@@ -17,6 +17,19 @@ class BlocksController extends AppController
             parent::initialize();
             $this->loadComponent('RequestHandler');
         }
+
+    public function isAuthorized($user)
+    {
+        if ($user['PositionID'] == '1' || $user['PositionID'] == '2')  {
+                return true;
+        }
+       return parent::isAuthorized($user);
+    }
+    public function beforeFilter(Event $event)
+    {   
+        parent::beforeFilter($event);
+        $this->Auth->allow([]);   
+    }
     /**
      * Index method
      *

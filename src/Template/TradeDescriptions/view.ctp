@@ -4,9 +4,16 @@
  * @var \App\Model\Entity\TradeDescription $tradeDescription
  */
 ?>
-
+<!--Left Menu -->
+<div class="row">
+<div class="col-lg-2  col-md-3 bg-dark">
+    <div class="btn-group-vertical btn-block">
+        <a href="/defect_tracking/trades/" class="btn btn-dark ">List Trade</a>
+      <a href="/defect_tracking/trade-descriptions/" class="btn btn-dark ">Trade Description</a>
+      <a href="/defect_tracking/trade-descriptions/add" class="btn btn-dark ">Create Trade Desciption</a>
+    </div>
+</div>
 <div class="tradeDescriptions view large-9 medium-8 columns content">
-    <h3><?= h($tradeDescription->TradeDescriptionID) ?></h3>
     <table class="vertical-table">
         <tr>
             <th scope="row"><?= __('Trade') ?></th>
@@ -29,4 +36,5 @@
             <td><?= h($tradeDescription->modified) ?></td>
         </tr>
     </table>
+</div>
 </div>

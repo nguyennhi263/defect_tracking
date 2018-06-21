@@ -4,20 +4,21 @@
  * @var \App\Model\Entity\TradeType $tradeType
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Trade Type'), ['action' => 'edit', $tradeType->TradeTypeID]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Trade Type'), ['action' => 'delete', $tradeType->TradeTypeID], ['confirm' => __('Are you sure you want to delete # {0}?', $tradeType->TradeTypeID)]) ?> </li>
-        <li><?= $this->Html->link(__('List Trade Types'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Trade Type'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Trades'), ['controller' => 'Trades', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Trade'), ['controller' => 'Trades', 'action' => 'add']) ?> </li>
-    </ul>
-</nav>
+<!--Left Menu -->
+<div class="row">
+<div class="col-lg-2  col-md-3 bg-dark">
+    <div class="btn-group-vertical btn-block">
+        <a href="/defect_tracking/trades/" class="btn btn-dark ">List Trade</a>
+      <a href="/defect_tracking/trades/add" class="btn btn-dark ">Create New Trade</a>
+      <a href="/defect_tracking/trade-types/" class="btn btn-dark ">Trade Types</a>
+      <a href="/defect_tracking/trade-types/add" class="btn btn-dark "> Create Trade Types</a>
+      <a href="/defect_tracking/trade-descriptions/" class="btn btn-dark ">Trade Description</a>
+      <a href="/defect_tracking/trade-descriptions/add" class="btn btn-dark ">Create Trade Desciption</a>
+    </div>
+</div>
 <div class="tradeTypes view large-9 medium-8 columns content">
-    <h3><?= h($tradeType->TradeTypeID) ?></h3>
-    <table class="vertical-table">
+    
+    <table class="vertical-table table">
         <tr>
             <th scope="row"><?= __('TradeTypeName') ?></th>
             <td><?= h($tradeType->TradeTypeName) ?></td>
@@ -38,7 +39,7 @@
     <div class="related">
         <h4><?= __('Related Trades') ?></h4>
         <?php if (!empty($tradeType->trades)): ?>
-        <table cellpadding="0" cellspacing="0">
+        <table class="table">
             <tr>
                 <th scope="col"><?= __('TradeID') ?></th>
                 <th scope="col"><?= __('TradeTypeID') ?></th>
@@ -64,4 +65,5 @@
         </table>
         <?php endif; ?>
     </div>
+</div>
 </div>

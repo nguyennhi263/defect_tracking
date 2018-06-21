@@ -4,20 +4,22 @@
  * @var \App\Model\Entity\User[]|\Cake\Collection\CollectionInterface $users
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New User'), ['action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="users index large-9 medium-8 columns content">
+<!--Left Menu -->
+<div class="row">
+<div class="col-lg-2  col-md-3 bg-dark">
+    <div class="btn-group-vertical btn-block">
+    <a href="/defect_tracking/users/" class="btn btn-dark ">List User</a>
+      <a href="/defect_tracking/users/add" class="btn btn-dark ">Create New User</a>
+      
+    </div>
+</div>
+<div class="users col-lg-10  col-md-9 columns content">
     <h3><?= __('Users') ?></h3>
-    <table cellpadding="0" cellspacing="0">
+    <table class="table">
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('UserID') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('LoginName') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('UserPass') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('PositionID') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('FullName') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('Email') ?></th>
@@ -31,7 +33,6 @@
             <tr>
                 <td><?= $this->Number->format($user->UserID) ?></td>
                 <td><?= h($user->LoginName) ?></td>
-                <td><?= h($user->UserPass) ?></td>
                 <td><?= $this->Number->format($user->PositionID) ?></td>
                 <td><?= h($user->FullName) ?></td>
                 <td><?= h($user->Email) ?></td>
@@ -56,4 +57,5 @@
         </ul>
         <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
     </div>
+</div>
 </div>

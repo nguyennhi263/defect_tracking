@@ -120,8 +120,8 @@ class AppController extends Controller
             return true;
         }
         // Default deny
-        return false;
+        return true;
     }
-
+    
 
 }

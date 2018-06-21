@@ -4,17 +4,18 @@
  * @var \App\Model\Entity\TradeDescription[]|\Cake\Collection\CollectionInterface $tradeDescriptions
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Trade Description'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Trades'), ['controller' => 'Trades', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Trade'), ['controller' => 'Trades', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
+<!--Left Menu -->
+<div class="row">
+<div class="col-lg-2  col-md-3 bg-dark">
+    <div class="btn-group-vertical btn-block">
+        <a href="/defect_tracking/trades/" class="btn btn-dark ">List Trade</a>
+      <a href="/defect_tracking/trade-descriptions/" class="btn btn-dark ">Trade Description</a>
+      <a href="/defect_tracking/trade-descriptions/add" class="btn btn-dark ">Create Trade Desciption</a>
+    </div>
+</div>
 <div class="tradeDescriptions index large-9 medium-8 columns content">
     <h3><?= __('Trade Descriptions') ?></h3>
-    <table cellpadding="0" cellspacing="0">
+    <table class="table">
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('TradeDescriptionID') ?></th>
@@ -52,4 +53,5 @@
         </ul>
         <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
     </div>
+</div>
 </div>

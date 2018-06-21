@@ -176,18 +176,13 @@ function showCountDefectByMonthChart($label,$openDefect,$closeDefect){
                 label: "Opened",
                 borderColor: "#ff6384",
                 fill: false
-              }, { 
-                data: $closeDefect,
-                label: "Closed",
-                borderColor: "#8e5ea2",
-                fill: false
               }
             ]
           },
           options: {
             title: {
               display: true,
-              text: 'Defect opened and closed'
+              text: 'Defect opened last 12 months'
             }
           }
         });

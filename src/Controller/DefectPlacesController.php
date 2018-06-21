@@ -3,6 +3,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\Controller\Component\RequestHandlerComponent ;
 use Cake\ORM\TableRegistry;
+use Cake\Event\Event;
 /**
  * DefectPlaces Controller
  *
@@ -13,6 +14,12 @@ use Cake\ORM\TableRegistry;
 class DefectPlacesController extends AppController
 {
 
+
+    public function beforeFilter(Event $event)
+    {   
+        
+        $this->Auth->allow(['all']);   
+    }
     public function initialize()
     {
         parent::initialize();

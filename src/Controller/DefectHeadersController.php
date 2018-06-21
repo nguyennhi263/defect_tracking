@@ -16,8 +16,7 @@ class DefectHeadersController extends AppController
     }
     public function isAuthorized($user)
     {
-        parent::isAuthorized($user);
-        return true;
+        return true; // anyone can access
     }
     public function beforeFilter(Event $event)
     {   

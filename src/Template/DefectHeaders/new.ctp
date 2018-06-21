@@ -1,12 +1,14 @@
 
 <!--Left Menu -->
-<script type="text/javascript">
-
-</script>
 <div class="row">
-<div class="col-lg-2  col-md-3  bg-dark">
-   
-</div>
+ <!--Left Menu -->
+    <div class="left-menu col-sm-3 col-md-2 bg-dark">
+          <div class="btn-group-vertical btn-block">
+               <a href="/defect_tracking/defect-headers/" class="btn btn-dark ">List Defect</a>
+              <a href="/defect_tracking/defect-headers/block" class="btn btn-dark ">Create New Defect</a>
+              <button type="button" class="btn btn-block btn-dark"></button>
+            </div>
+    </div>
 <!-- contain-->
 
 <div class="blocks col-sm-9 col-lg-10 columns ">
@@ -81,8 +83,10 @@
                    // alert(data);
                 }
             });
-        $('#table-item').each(function(){
-          $(this).find('tr').each(function(){
+           setTimeout(
+            function() {
+                     $('#table-item').each(function(){
+                 $(this).find('tr').each(function(){
 
                $PlaceID = $(this).find('select[name=PlaceID]').val();
                $TradeDescriptionID = $(this).find('select[name=TradeDescriptionID]').val();
@@ -91,9 +95,12 @@
               $image = $(this).find('input[type=file]');
               insert_item($TradeDescriptionID,$PlaceID,$image,$note);
             });
+            },
+            0000);
+   
           
          });
-        window.location.href = "https://www.example.com";
+       
      });
 
 });
@@ -123,7 +130,7 @@
                 method: "POST",
                 evalScripts: true,
                 url: "/defect_tracking/defect-items/newDefectItem/"+$Desc+"/"+$Place+"/"+$Note,
-                data: new Formdata($Image),
+                data: ([]),
                 success: function (data, textStatus) {
                    // alert(data);
                 }

@@ -8,15 +8,16 @@
 <div class="row">
 <div class="col-lg-2  col-md-3 bg-dark">
     <div class="btn-group-vertical btn-block">
-        <button type="button" class="btn btn-block btn-dark active">List Project</button>
-      <button type="button" class="btn btn-block btn-dark"><i class="fas fa-plus-circle"></i> Create New Project</button>
-      <button type="button" class="btn btn-block btn-dark">Contractor</button>
+        <a href="/defect_tracking/projects/" class="btn btn-dark ">List Project</a>
+      <a href="/defect_tracking/projects/add" class="btn btn-dark ">Create New Project</a>
+      <a href="/defect_tracking/Contractors/" class="btn btn-dark ">Contractor</a>
+      <a href="/defect_tracking/unit-types/" class="btn btn-dark ">Unit Types</a>
     </div>
 </div>
 <div class="projects  col-lg-10  col-md-8 content">
     <h3><?= __('Projects') ?></h3>
     <table cellpadding="0" cellspacing="0" class="table table-secondary table-striped table-hover">
-        <thead class="thead-dark">
+        <thead class="thead-light">
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('ProjectID') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('ProjectName') ?></th>

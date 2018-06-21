@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+use Cake\Event\Event;
 /**
  * Contractors Controller
  *
@@ -13,6 +13,18 @@ use App\Controller\AppController;
 class ContractorsController extends AppController
 {
 
+    public function isAuthorized($user)
+    {
+        if ($user['PositionID'] == '1' || $user['PositionID'] == '2')  {
+                return true;
+        }
+       return parent::isAuthorized($user);
+    }
+    public function beforeFilter(Event $event)
+    {   
+        parent::beforeFilter($event);
+        $this->Auth->allow([]);   
+    }
     /**
      * Index method
      *

@@ -10,7 +10,7 @@
           <div class="btn-group-vertical btn-block">
                 <button type="button" class="btn btn-block btn-dark active">List Defect</button>
               <a href="/defect_tracking/defect-headers/block" class="btn btn-dark ">Create New Defect</a>
-              <button type="button" class="btn btn-block btn-dark"></button>
+              <a href="/defect_tracking/home" class="btn btn-dark ">Chart</a>
             </div>
     </div>
     <!-- contend -->

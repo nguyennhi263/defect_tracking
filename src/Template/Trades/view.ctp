@@ -4,22 +4,21 @@
  * @var \App\Model\Entity\Trade $trade
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Trade'), ['action' => 'edit', $trade->TradeID]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Trade'), ['action' => 'delete', $trade->TradeID], ['confirm' => __('Are you sure you want to delete # {0}?', $trade->TradeID)]) ?> </li>
-        <li><?= $this->Html->link(__('List Trades'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Trade'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Trade Types'), ['controller' => 'TradeTypes', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Trade Type'), ['controller' => 'TradeTypes', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Trade Descriptions'), ['controller' => 'TradeDescriptions', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Trade Description'), ['controller' => 'TradeDescriptions', 'action' => 'add']) ?> </li>
-    </ul>
-</nav>
+<!--Left Menu -->
+<div class="row">
+<div class="col-lg-2  col-md-3 bg-dark">
+    <div class="btn-group-vertical btn-block">
+        <a href="/defect_tracking/trades/" class="btn btn-dark ">List Trade</a>
+      <a href="/defect_tracking/trades/add" class="btn btn-dark ">Create New Trade</a>
+      <a href="/defect_tracking/trade-types/" class="btn btn-dark ">Trade Types</a>
+      <a href="/defect_tracking/trade-types/add" class="btn btn-dark "> Create Trade Types</a>
+      <a href="/defect_tracking/trade-descriptions/" class="btn btn-dark ">Trade Description</a>
+      <a href="/defect_tracking/trade-descriptions/add" class="btn btn-dark ">Create Trade Desciption</a>
+    </div>
+</div>
 <div class="trades view large-9 medium-8 columns content">
-    <h3><?= h($trade->TradeID) ?></h3>
-    <table class="vertical-table">
+    
+    <table class="vertical-table table">
         <tr>
             <th scope="row"><?= __('Trade Type') ?></th>
             <td><?= $trade->has('trade_type') ? $this->Html->link($trade->trade_type->TradeTypeID, ['controller' => 'TradeTypes', 'action' => 'view', $trade->trade_type->TradeTypeID]) : '' ?></td>
@@ -41,10 +40,10 @@
             <td><?= h($trade->modified) ?></td>
         </tr>
     </table>
-    <div class="related">
+    <div class="related ">
         <h4><?= __('Related Trade Descriptions') ?></h4>
         <?php if (!empty($trade->trade_descriptions)): ?>
-        <table cellpadding="0" cellspacing="0">
+        <table class="table">
             <tr>
                 <th scope="col"><?= __('TradeDescriptionID') ?></th>
                 <th scope="col"><?= __('TradeID') ?></th>
@@ -70,4 +69,5 @@
         </table>
         <?php endif; ?>
     </div>
+</div>
 </div>

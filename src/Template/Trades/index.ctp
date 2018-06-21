@@ -4,19 +4,20 @@
  * @var \App\Model\Entity\Trade[]|\Cake\Collection\CollectionInterface $trades
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Trade'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Trade Types'), ['controller' => 'TradeTypes', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Trade Type'), ['controller' => 'TradeTypes', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Trade Descriptions'), ['controller' => 'TradeDescriptions', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Trade Description'), ['controller' => 'TradeDescriptions', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
+<!--Left Menu -->
+<div class="row">
+<div class="col-lg-2  col-md-3 bg-dark">
+    <div class="btn-group-vertical btn-block">
+        <a href="/defect_tracking/trades/" class="btn btn-dark ">List Trade</a>
+      <a href="/defect_tracking/trade-types/" class="btn btn-dark ">Trade Types</a>
+      <a href="/defect_tracking/trade-types/add" class="btn btn-dark "> Create Trade Types</a>
+      <a href="/defect_tracking/trade-descriptions/" class="btn btn-dark ">Trade Description</a>
+      <a href="/defect_tracking/trade-descriptions/add" class="btn btn-dark ">Create Trade Desciption</a>
+    </div>
+</div>
 <div class="trades index large-9 medium-8 columns content">
     <h3><?= __('Trades') ?></h3>
-    <table cellpadding="0" cellspacing="0">
+    <table class="table">
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('TradeID') ?></th>
@@ -54,4 +55,5 @@
         </ul>
         <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
     </div>
+</div>
 </div>
